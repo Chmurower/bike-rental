@@ -12,9 +12,7 @@ to problem solving and preferred styles of work.
 
 You can check their work here:
 
-* [Jacek  :octocat: Github](https://github.com/Jacek-Kapral)
-* [Paweł  :octocat: Github](https://github.com/PZ-wsb)
-* [Łukasz :octocat: Github](https://github.com/LukasZlocki)
+= [Jacek  :octocat: Github](https://github.com/Jacek-Kapral) = [Paweł  :octocat: Github](https://github.com/PZ-wsb) = [Łukasz :octocat: Github](https://github.com/LukasZlocki) =
 
 Together they formed Chmurower team to develop an application that addresses the needs
 of bike rental places, that are often in need of reliable management app with high
