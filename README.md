@@ -14,6 +14,7 @@ You can check their work here:
 
 = [:octocat: Jacek Github](https://github.com/Jacek-Kapral) = [:octocat: Paweł Github](https://github.com/PZ-wsb) = [:octocat: Łukasz Github](https://github.com/LukasZlocki) =
 
-Together they formed Chmurower team to develop an application that addresses the needs
+Together they formed ![Chmurower](https://github.com/Chmurower) team to develop an application that addresses the needs
 of bike rental places, that are often in need of reliable management app with high
 availability without relying on bare-metal systems.
+
