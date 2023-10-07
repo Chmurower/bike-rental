@@ -1,7 +1,6 @@
 # Bike Rental App
 
-![Logo of a student project - Bike Rental App](img/brcranklogo_sm.png)
-
+<img align="left" src="https://github.com/Chmurower/bike-rental/blob/main/img/brcranklogo_sm.png?raw=true">
 ### Web application dedicated to handling and managing of bike rental service. 
 
 Chmurower is a team consisting of three enthusiastic bike lovers and IT Cloud practitioners.
