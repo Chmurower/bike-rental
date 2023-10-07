@@ -1,6 +1,6 @@
 # Bike Rental App
 
-![Logo of a student project - Bike Rental App](/assets/images/brcranklogo_sm.png)
+![Logo of a student project - Bike Rental App](img/brcranklogo_sm.png)
 
 ### Web application dedicated to handling and managing of bike rental service. 
 
