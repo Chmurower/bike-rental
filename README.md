@@ -4,7 +4,6 @@
 
 Chmurower is a team consisting of three enthusiastic bike lovers and IT Cloud practitioners.
 Team consists of Jacek Cierkosz, Paweł Zięba and Łukasz Złocki.
-
 Each member of the team has his own Github profile, representing different approaches
 to problem solving and preferred styles of work. 
 
