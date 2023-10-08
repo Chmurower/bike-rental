@@ -1,6 +1,6 @@
 namespace BikeRental.Models.Models
 {
-    public class Categorys
+    public class Category
     {
         public int Id { get; set; }
         public string? Type { get; set; }                
