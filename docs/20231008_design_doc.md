@@ -66,16 +66,21 @@ Table:	Bicycle
 		Date-time: Start reservation
 		Date-time: End reservation
 		Date-time: Start service - 2 days hardcoded
-
 		Bool: 0, 1 - is on stock
 		Bool: 0, 1 - is in service
 		
 Table:	Category
 		Int: Category_id (0, 1, 2)
 		String: Type (Mtb, road, city)
-		
+
+Technologies:
+	Infrastructure: Azure
+	Backend: .NET 7.0
+	Database: MySQL
 		
 You might here also touch things, such as testing.
+
+Frontend: for later arrangement.
 
 ## Other options
 
