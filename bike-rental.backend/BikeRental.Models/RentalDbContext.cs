@@ -10,8 +10,5 @@ namespace BikeRental.Models
         }
         public DbSet<Bicycle> Bicycles { get; set; }
         public DbSet<Category> Categorys { get; set; } 
-
-
-
     }
 }

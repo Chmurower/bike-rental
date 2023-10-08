@@ -4,6 +4,7 @@ namespace BikeRental.Models.Models
     {
         public int Id { get; set; }
         public int CategoryId { get; set; }
+        public Category? Category { get; set; }
         public string? Model { get; set; }
         public int FrameSize { get; set; }
         public DateTime StartReservation { get; set; }
