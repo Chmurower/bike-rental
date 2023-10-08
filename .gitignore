@@ -1,1 +1,3 @@
 *.bak
+bike-rental.backend/BikeRental.Models/bin/
+bike-rental.backend/BikeRental.Models/obj/
