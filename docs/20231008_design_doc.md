@@ -1,9 +1,9 @@
-#Bike Rental App
+###Bike Rental App
 
 *Authors*: 
-Jacek Cierkosz
-Paweł Zięba
-Łukasz Złocki
+Jacek Cierkosz, 
+Paweł Zięba, 
+Łukasz Złocki, 
 
 Created at: 
 Chmurower Studio
@@ -11,6 +11,7 @@ Chmurower Studio
 ## Intro
 
 *Why/Problem*
+
 With growing popularity of bike tourism, there's a high demand for bike rental services.
 
 Lots of rental companies have problems with managing their resources - bikes, calendar, maintentance.
@@ -56,10 +57,6 @@ Overly complicated solutions with too many options. The application is to be lig
   Resources that will need service soon / Resources in service at the moment.
   
 
-
-Starting with high-level design, arch diagrams, screenshots, mockups,... 
-
-...
 
 You might here also touch things, such as testing.
 
