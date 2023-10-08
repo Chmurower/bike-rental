@@ -1,1 +1,5 @@
 *.bak
+
+OrderFlowStudio.Api/obj/
+bike-rental/bike-rental.backend/BikeRental.Models/obj/
+bike-rental/bike-rental.backend/BikeRental.Models/bin/
