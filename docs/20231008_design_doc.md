@@ -42,6 +42,21 @@ Overly complicated solutions with too many options. The application is to be lig
 
 ## Proposed solution
 
+
+**Desired functions:**
+
+* Grouping resources: 
+  MTB / Road / City
+* Listing resources:
+  All resources / Resources by group.
+* Listing available resources by date frame.
+  All resources / Resources by group.
+* Reservation of resource by date frame and client name.
+* List all resources in need of service:
+  Resources that will need service soon / Resources in service at the moment.
+  
+
+
 Starting with high-level design, arch diagrams, screenshots, mockups,... 
 
 ...
