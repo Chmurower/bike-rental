@@ -56,8 +56,25 @@ Overly complicated solutions with too many options. The application is to be lig
 * List all resources in need of service:
   Resources that will need service soon / Resources in service at the moment.
   
+**Database model**:
 
+Table:	Bicycle
+		Int: ID
+		Foreign Key: Category_id (Type)
+		String: Model
+		Int: Framesize (14, 15, 16, 17, 18, 19, 20, 21)
+		Date-time: Start reservation
+		Date-time: End reservation
+		Date-time: Start service - 2 days hardcoded
 
+		Bool: 0, 1 - is on stock
+		Bool: 0, 1 - is in service
+		
+Table:	Category
+		Int: Category_id (0, 1, 2)
+		String: Type (Mtb, road, city)
+		
+		
 You might here also touch things, such as testing.
 
 ## Other options
