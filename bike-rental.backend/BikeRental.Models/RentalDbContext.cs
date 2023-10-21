@@ -10,6 +10,7 @@ namespace BikeRental.Models
         }
         public DbSet<Bicycle> Bicycles { get; set; }
         public DbSet<Category> Categorys { get; set; } 
+        public DbSet<Reservation> Reservations { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
