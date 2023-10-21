@@ -7,8 +7,8 @@ namespace BikeRental.Models.Models
         public Category? Category { get; set; }
         public string? Model { get; set; }
         public int FrameSize { get; set; }
-        public DateTime StartReservation { get; set; }
-        public DateTime EndReservation { get; set; }
+        public int ReservationId { get; set; }
+        public Reservation? Reservation { get; set; }
         public DateTime StartService { get; set; }
         public bool IsAvailable { get; set; }
         public bool IsInService { get; set; }
