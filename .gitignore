@@ -1,3 +1,14 @@
 *.bak
-bike-rental.backend/BikeRental.Models/bin/
+
+.vs/
+.vscode/
+
+obj/
 bike-rental.backend/BikeRental.Models/obj/
+bike-rental.backend/BikeRental.Models/bin/
+
+bike-rental.backend/BikeRental.Services/obj/
+bike-rental.backend/BikeRental.Services/bin/
+
+bike-rental.backend/BikeRental.Api/obj/
+bike-rental.backend/BikeRental.Api/bin/
