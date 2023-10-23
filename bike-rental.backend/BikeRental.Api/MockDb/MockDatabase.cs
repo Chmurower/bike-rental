@@ -44,9 +44,9 @@ namespace BikeRental.Api.MockDb
             new Bicycle
             {
                 Id = 1,
-                CategoryId = 0,
+                CategoryId = 1,
                 Category = null,
-                ModelName = "GT ZAskar",
+                ModelName = "GT Zaskar",
                 FrameSizeId = 1,
                 SerialNumber = "A0001",
                 //Reservations = new Reservation(){ };
@@ -58,9 +58,9 @@ namespace BikeRental.Api.MockDb
             new Bicycle
             {
                 Id = 2,
-                CategoryId = 0,
+                CategoryId = 1,
                 Category = null,
-                ModelName = "GT ZAskar",
+                ModelName = "Giant Rock",
                 FrameSizeId = 1,
                 SerialNumber = "A0002",
                 //Reservations = new Reservation(){ };
@@ -71,9 +71,9 @@ namespace BikeRental.Api.MockDb
             new Bicycle
             {
                 Id = 3,
-                CategoryId = 0,
+                CategoryId = 1,
                 Category = null,
-                ModelName = "GT Zaskar",
+                ModelName = "Author Basic",
                 FrameSizeId = 1,
                 SerialNumber = "A0003",
                 //Reservations = new Reservation(){ };
@@ -84,9 +84,9 @@ namespace BikeRental.Api.MockDb
             new Bicycle
             {
                 Id = 4,
-                CategoryId = 0,
+                CategoryId = 2,
                 Category = null,
-                ModelName = "GT Zaskar",
+                ModelName = "FBM partymaster",
                 FrameSizeId = 1,
                 SerialNumber = "A0004",
                 //Reservations = new Reservation(){ };
