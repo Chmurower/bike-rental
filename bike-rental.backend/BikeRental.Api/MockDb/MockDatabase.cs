@@ -34,6 +34,7 @@ namespace BikeRental.Api.MockDb
                 Category = null,
                 ModelName = "CityMe",
                 FrameSizeId = 1,
+                SerialNumber = "A0000",
                 //Reservations = new Reservation(){ };
                 StartService = Convert.ToDateTime("2023-10-11"),
                 IsAvailable = true,
@@ -47,6 +48,7 @@ namespace BikeRental.Api.MockDb
                 Category = null,
                 ModelName = "GT ZAskar",
                 FrameSizeId = 1,
+                SerialNumber = "A0001",
                 //Reservations = new Reservation(){ };
                 StartService = Convert.ToDateTime("2023-10-11"),
                 IsAvailable = true,
@@ -55,15 +57,42 @@ namespace BikeRental.Api.MockDb
 
             new Bicycle
             {
-                Id = 3,
+                Id = 2,
                 CategoryId = 0,
                 Category = null,
                 ModelName = "GT ZAskar",
                 FrameSizeId = 1,
+                SerialNumber = "A0002",
                 //Reservations = new Reservation(){ };
                 StartService = Convert.ToDateTime("2023-10-11"),
                 IsAvailable = true,
                 IsInService = false
+            },
+            new Bicycle
+            {
+                Id = 3,
+                CategoryId = 0,
+                Category = null,
+                ModelName = "GT Zaskar",
+                FrameSizeId = 1,
+                SerialNumber = "A0003",
+                //Reservations = new Reservation(){ };
+                StartService = Convert.ToDateTime("2023-10-11"),
+                IsAvailable = false,
+                IsInService = true
+            },
+            new Bicycle
+            {
+                Id = 4,
+                CategoryId = 0,
+                Category = null,
+                ModelName = "GT Zaskar",
+                FrameSizeId = 1,
+                SerialNumber = "A0004",
+                //Reservations = new Reservation(){ };
+                StartService = Convert.ToDateTime("2023-10-11"),
+                IsAvailable = false,
+                IsInService = true
             },
         };
 
