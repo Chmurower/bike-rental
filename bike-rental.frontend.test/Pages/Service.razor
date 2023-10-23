@@ -1,11 +1,11 @@
-@page "/bicycleslist"
+﻿@page "/service"
 @using bike_rental.frontend.test.Models
 
 @inject HttpClient http
 
-<PageTitle>Bicycles review</PageTitle>
+<PageTitle>Bicycles service room</PageTitle>
 
-<h1>Bicycles</h1>
+<h1>Bicycles waiting for service</h1>
 
 @if (bicycles == null)
 {
@@ -17,9 +17,9 @@ else
         <thead>
             <tr>
                 <th>Model</th>
+                <th>Serial number</th>
                 <th>Frame size id</th>
-                <th>Is available</th>
-                <th>Is in service</th>
+                <th>Service day</th>
             </tr>
         </thead>
         <tbody>
@@ -27,9 +27,9 @@ else
             {
                 <tr>
                     <td>@bicycle.ModelName</td>
+                    <td>@bicycle.SerialNumber</td>
                     <td>@bicycle.FrameSizeId</td>
-                    <td>@bicycle.IsAvailable</td>
-                    <td>@bicycle.IsInService</td>
+                    <td>@bicycle.StartService</td>
                 </tr>
             }
         </tbody>
@@ -41,6 +41,6 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        bicycles = await http.GetFromJsonAsync<List<Bicycle>>("https://localhost:7052/api/bike");
+        bicycles = await http.GetFromJsonAsync<List<Bicycle>>("https://localhost:7052/api/service");
     }
 }
