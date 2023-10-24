@@ -1,0 +1,46 @@
+@page "/bicycleslist"
+@using bike_rental.frontend.test.Models
+
+@inject HttpClient http
+
+<PageTitle>Bicycles review</PageTitle>
+
+<h1>Bicycles</h1>
+
+@if (bicycles == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Model</th>
+                <th>Frame size id</th>
+                <th>Is available</th>
+                <th>Is in service</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var bicycle in bicycles)
+            {
+                <tr>
+                    <td>@bicycle.ModelName</td>
+                    <td>@bicycle.FrameSizeId</td>
+                    <td>@bicycle.IsAvailable</td>
+                    <td>@bicycle.IsInService</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Bicycle> bicycles;
+
+    protected override async Task OnInitializedAsync()
+    {
+        bicycles = await http.GetFromJsonAsync<List<Bicycle>>("https://localhost:7052/api/bike");
+    }
+}

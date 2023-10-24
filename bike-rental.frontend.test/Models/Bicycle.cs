@@ -1,4 +1,4 @@
-namespace BikeRental.Models.Models
+﻿namespace bike_rental.frontend.test.Models
 {
     public class Bicycle
     {
