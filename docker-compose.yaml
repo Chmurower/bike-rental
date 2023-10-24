@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  db:
+    image: mysql
+    container_name: mydatabase
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    volumes:
+      - ./bikerentaldb.sql:/docker-entrypoint-initdb.d/bikerentaldb.sql
+    networks:
+      - mynetwork
+
+volumes:
+  dbdata:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /path/to/dbdata
+
+networks:
+  mynetwork:
+    name: mynetwork
