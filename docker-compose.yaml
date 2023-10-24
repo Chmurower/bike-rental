@@ -6,10 +6,13 @@ services:
     container_name: mydatabase
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
+      MYSQL_DATABASE_FILE: /run/secrets/db_database
     volumes:
       - ./bikerentaldb.sql:/docker-entrypoint-initdb.d/bikerentaldb.sql
+    secrets:
+      - db_root_password
+      - db_database
     networks:
       - mynetwork
 
@@ -19,8 +22,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /path/to/dbdata
+      device: /var/lib/mysql #placeholder for the actual path to the database
 
 networks:
   mynetwork:
     name: mynetwork
+
+secrets:
+  db_root_password:
+    file: secrets/dbdata/root_password
+  db_database:
+    file: secrets/dbdata/database
