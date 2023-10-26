@@ -127,55 +127,55 @@ namespace BikeRental.Api.MockDb
         };
 
         // Mock database - RESERVATIONs
-        internal readonly List<Reservation> reservations = new List<Reservation>()
+        internal readonly List<ReservationDate> reservations = new List<ReservationDate>()
         {
-            new Reservation
+            new ReservationDate
             {
                 Id = 0,
                 StartReservation = Convert.ToDateTime("2023-12-10"),
                 EndReservation = Convert.ToDateTime("2023-12-11"),
                 BicycleId = 0,
-                Bicycle = null
+               // Bicycle = null
             },
-            new Reservation
+            new ReservationDate
             {
                 Id = 1,
                 StartReservation = Convert.ToDateTime("2023-12-10"),
                 EndReservation = Convert.ToDateTime("2023-12-11"),
                 BicycleId = 1,
-                Bicycle = null
+               // Bicycle = null
             },
-            new Reservation
+            new ReservationDate
             {
                 Id = 2,
                 StartReservation = Convert.ToDateTime("2023-12-10"),
                 EndReservation = Convert.ToDateTime("2023-12-11"),
                 BicycleId = 2,
-                Bicycle = null
+               // Bicycle = null
             },
-            new Reservation
+            new ReservationDate
             {
                 Id = 3,
                 StartReservation = Convert.ToDateTime("2023-12-10"),
                 EndReservation = Convert.ToDateTime("2023-12-11"),
                 BicycleId = 1,
-                Bicycle = null
+               // Bicycle = null
             },
-            new Reservation
+            new ReservationDate
             {
                 Id = 4,
                 StartReservation = Convert.ToDateTime("2023-12-10"),
                 EndReservation = Convert.ToDateTime("2023-12-11"),
                 BicycleId = 2,
-                Bicycle = null
+               // Bicycle = null
             },
-            new Reservation
+            new ReservationDate
             {
                 Id = 5,
                 StartReservation = Convert.ToDateTime("2023-12-10"),
                 EndReservation = Convert.ToDateTime("2023-12-11"),
                 BicycleId = 1,
-                Bicycle = null
+               // Bicycle = null
             },
         };
 
