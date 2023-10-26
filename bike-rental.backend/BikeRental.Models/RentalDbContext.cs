@@ -12,7 +12,7 @@ namespace BikeRental.Models
         public DbSet<Bicycle> Bicycles { get; set; }
         public DbSet<Category> Categorys { get; set; } 
         public DbSet<FrameSize> FrameSizes { get; set; }
-        public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<ReservationDate> Reservations { get; set; }
         public DbSet<ReservationTicket> ReservationTickets { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
