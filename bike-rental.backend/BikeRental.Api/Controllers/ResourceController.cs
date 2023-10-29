@@ -1,4 +1,4 @@
-﻿using BikeRental.Api.MockDb;
+﻿using BikeRental.Services.Resource_Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BikeRental.Api.Controllers
@@ -6,8 +6,14 @@ namespace BikeRental.Api.Controllers
     [ApiController]
     public class ResourceController : ControllerBase
     {
-        MockDatabase _dbMock = new MockDatabase();
+        private readonly ResourceService _dbResource;
 
+        public ResourceController(ResourceService dbResource)
+        {
+            _dbResource = dbResource;
+        }
+
+        /*
         // GET
         [HttpGet("api/category")]
         public IActionResult GetAllCategories()
@@ -23,12 +29,13 @@ namespace BikeRental.Api.Controllers
             var service = _dbMock.categories.Where(i => i.Id == id).FirstOrDefault();
             return Ok(service);
         }
+        */
 
         // GET
         [HttpGet("api/bike")]
         public IActionResult GetAllBikes()
         {
-            var _bicycles = _dbMock.bicycles;
+            var _bicycles = _dbResource.GetAllBikes();
             return Ok(_bicycles);
         }
 
@@ -36,7 +43,7 @@ namespace BikeRental.Api.Controllers
         [HttpGet("api/bike/{id}")]
         public IActionResult GetAllBikes(int id)
         {
-            var service = _dbMock.bicycles.Where(i => i.Id == id).FirstOrDefault();
+            var service = _dbResource.GetBikeById(id);
             return Ok(service);
         }
     }
