@@ -16,7 +16,7 @@ namespace BikeRental.Api.Controllers
         [HttpGet("api/category")]
         public IActionResult GetAllCategories()
         {
-            var categories = _dbCategory.GetAllCategories().ToList();
+            var categories = _dbCategory.GetAllCategories();
             return Ok(categories);
         }
 
