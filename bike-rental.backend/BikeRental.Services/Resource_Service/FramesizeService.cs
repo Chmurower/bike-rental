@@ -3,7 +3,7 @@ using BikeRental.Models.Models;
 
 namespace BikeRental.Services.Resource_Service
 {
-    internal class FramesizeService : IFramesizeService
+    public class FramesizeService : IFramesizeService
     {
         private readonly RentalDbContext _db;
 

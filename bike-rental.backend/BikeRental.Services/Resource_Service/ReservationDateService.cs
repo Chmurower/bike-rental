@@ -3,7 +3,7 @@ using BikeRental.Models.Models;
 
 namespace BikeRental.Services.Resource_Service
 {
-    internal class ReservationDateService : IReservationDateService
+    public class ReservationDateService : IReservationDateService
     {
         private readonly RentalDbContext _db;
 
