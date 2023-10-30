@@ -1,4 +1,5 @@
 using BikeRental.Models;
+using BikeRental.Services.Resource_Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<RentalDbContext>();
+builder.Services.AddScoped<ResourceService>();
+builder.Services.AddScoped<CategoryService>();
+builder.Services.AddScoped<FramesizeService>();
+builder.Services.AddScoped<ReservationDateService>();
 
 var app = builder.Build();
 
