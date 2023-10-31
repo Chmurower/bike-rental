@@ -24,10 +24,30 @@ namespace BikeRental.Services.Resource_Service
             return service;
         }
 
-        public void UpdateBikeData(Bicycle bicycle)
+        public ResponseService<bool> UpdateBikeData(Bicycle bicycle)
         {
-            _db.Bicycles.Update(bicycle);
-            _db.SaveChanges();
+            try
+            {
+                _db.Bicycles.Update(bicycle);
+                _db.SaveChanges();
+                return new ResponseService<bool>
+                {
+                    IsSucess = true,
+                    Message = "Bicycle object updated.",
+                    Time = DateTime.UtcNow,
+                    Data = true
+                };
+            }
+            catch(Exception e)
+            {
+                return new ResponseService<bool>
+                {
+                    IsSucess = false,
+                    Message = e.StackTrace,
+                    Time = DateTime.UtcNow,
+                    Data = false
+                };
+            }
         }
     }
 }
