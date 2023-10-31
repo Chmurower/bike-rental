@@ -1,11 +1,17 @@
 ﻿using BikeRental.Models;
 using BikeRental.Models.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BikeRental.Services.Resource_Service
 {
     public class ReservationTicketService : IReservationTicketService
     {
         private readonly RentalDbContext _db;
+        public ReservationTicketService(RentalDbContext db)
+        {
+            _db = db;
+        }
+
         public List<ReservationTicket> GetAllReservations()
         {
             var service = _db.ReservationTickets.ToList();
@@ -14,7 +20,8 @@ namespace BikeRental.Services.Resource_Service
 
         public ReservationTicket GetReservationById(int id)
         {
-            var service = _db.ReservationTickets.FirstOrDefault(x => x.Id == id);
+            var service = _db.ReservationTickets
+                    .FirstOrDefault(x => x.Id == id);
             return service;
         }
     }
