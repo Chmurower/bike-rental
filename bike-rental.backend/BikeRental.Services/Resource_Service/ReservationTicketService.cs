@@ -21,7 +21,9 @@ namespace BikeRental.Services.Resource_Service
         public ReservationTicket GetReservationById(int id)
         {
             var service = _db.ReservationTickets
-                    .FirstOrDefault(x => x.Id == id);
+                .Include(bi => bi.Bicycle)
+                    .Include(ca => ca.Bicycle.Category)
+                            .FirstOrDefault(x => x.Id == id);
             return service;
         }
     }
