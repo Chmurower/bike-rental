@@ -9,6 +9,6 @@ namespace BikeRental.Services.Resource_Service
          public Bicycle GetBikeById(int id);
 
          // UPDATE
-         public void UpdateBikeData(Bicycle bicycle);
+         public ResponseService<bool> UpdateBikeData(Bicycle bicycle);
     }
 }

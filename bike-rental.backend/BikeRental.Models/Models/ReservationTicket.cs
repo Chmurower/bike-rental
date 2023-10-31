@@ -8,7 +8,6 @@ namespace BikeRental.Models.Models
         public string? CustomerName { get; set; }
         public int BicycleId { get; set; }
         public Bicycle Bicycle { get; set; }
-        public int ReservationId { get; set; }
-        public ReservationDate Reservation { get; set; }
+        public int ReservationDateId { get; set; }
     }
 }
