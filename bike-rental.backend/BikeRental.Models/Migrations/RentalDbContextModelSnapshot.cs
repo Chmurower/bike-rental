@@ -55,7 +55,7 @@ namespace BikeRental.Models.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Bicycles");
+                    b.ToTable("Bicycles", (string)null);
                 });
 
             modelBuilder.Entity("BikeRental.Models.Models.Category", b =>
@@ -71,7 +71,7 @@ namespace BikeRental.Models.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categorys");
+                    b.ToTable("Categorys", (string)null);
                 });
 
             modelBuilder.Entity("BikeRental.Models.Models.FrameSize", b =>
@@ -87,7 +87,7 @@ namespace BikeRental.Models.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FrameSizes");
+                    b.ToTable("FrameSizes", (string)null);
                 });
 
             modelBuilder.Entity("BikeRental.Models.Models.ReservationDate", b =>
@@ -111,7 +111,7 @@ namespace BikeRental.Models.Migrations
 
                     b.HasIndex("BicycleId");
 
-                    b.ToTable("ReservationDates");
+                    b.ToTable("ReservationDates", (string)null);
                 });
 
             modelBuilder.Entity("BikeRental.Models.Models.ReservationTicket", b =>
@@ -135,7 +135,7 @@ namespace BikeRental.Models.Migrations
 
                     b.HasIndex("BicycleId");
 
-                    b.ToTable("ReservationTickets");
+                    b.ToTable("ReservationTickets", (string)null);
                 });
 
             modelBuilder.Entity("BikeRental.Models.Models.Bicycle", b =>
