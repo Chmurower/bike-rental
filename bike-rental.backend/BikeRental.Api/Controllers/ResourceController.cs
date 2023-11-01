@@ -28,5 +28,13 @@ namespace BikeRental.Api.Controllers
             var service = _dbResource.GetBikeById(id);
             return Ok(service);
         }
+
+        // PATCH
+        [HttpPatch("api/bike/toservice/{id}")]
+        public IActionResult SendBicycletoServiceByBicycleId(int id)
+        {
+            var service = _dbResource.SendBicycleToServiceById(id);
+            return Ok(service);
+        }
     }
 }
