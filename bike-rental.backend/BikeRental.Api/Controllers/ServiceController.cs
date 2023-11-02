@@ -1,4 +1,5 @@
-﻿using BikeRental.Services.Resource_Service;
+﻿using BikeRental.Models.Models;
+using BikeRental.Services.Resource_Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BikeRental.Api.Controllers
@@ -23,11 +24,12 @@ namespace BikeRental.Api.Controllers
            return Ok(service);
         }
 
+
         // PATCH
-        [HttpPatch("api/service/done/{id}")]
-        public IActionResult FinishBicycleServiceByBicycleId(int id)
+        [HttpPatch("api/service/done")]
+        public IActionResult FinishBicycleServiceByBicycleId([FromBody] Bicycle bicycle)
         {
-            var service = _dbResource.FinishBicycleServiceById(id);
+            var service = _dbResource.UpdateBikeData(bicycle);
             return Ok(service);
         }
     }

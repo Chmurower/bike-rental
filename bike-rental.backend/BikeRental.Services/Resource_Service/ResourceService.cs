@@ -18,6 +18,18 @@ namespace BikeRental.Services.Resource_Service
             return service;
         }
 
+        /// <summary>
+        /// Returns list of bicycles which are available for rent
+        /// </summary>
+        /// <returns>List<Bicycle></returns>
+        public List<Bicycle> GetAllBikesReadyToRent()
+        {
+            var service = _db.Bicycles
+                .Where(a => a.IsAvailable == true)
+                    .ToList();
+            return service;
+        }
+
         public Bicycle GetBikeById(int id)
         {
             var service = _db.Bicycles.FirstOrDefault(x => x.Id == id);
