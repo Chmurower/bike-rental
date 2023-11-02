@@ -20,6 +20,7 @@ else
                 <th>Serial number</th>
                 <th>Frame size id</th>
                 <th>Service day</th>
+                <th>Service performed</th>
             </tr>
         </thead>
         <tbody>
@@ -30,6 +31,7 @@ else
                     <td>@bicycle.SerialNumber</td>
                     <td>@bicycle.FrameSizeId</td>
                     <td>@bicycle.StartService</td>
+                    <td><button class="btn btn-green"  @onclick="@(() => BicycleServisedAndReadyForRent(bicycle.id))">Servised</button></td>
                 </tr>
             }
         </tbody>
@@ -38,6 +40,15 @@ else
 
 @code {
     private List<Bicycle> bicycles;
+
+    void BicycleServisedAndReadyForRent(int bicycleId){
+        // ToDo : change status of bike and add new date for service
+        var response = await http.GetJsonAsync<bool>("https://localhost:7052/api/service/done/" + orderNb);
+        // ToDo : refresh this page
+        if (response == true){
+            OnInitializedAsync();
+        }
+    }
 
     protected override async Task OnInitializedAsync()
     {
