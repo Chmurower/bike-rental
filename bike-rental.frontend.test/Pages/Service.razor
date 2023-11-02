@@ -2,6 +2,7 @@
 @using bike_rental.frontend.test.Models
 
 @inject HttpClient http
+@inject NavigationManager Navigation
 
 <PageTitle>Bicycles service room</PageTitle>
 
@@ -13,7 +14,7 @@
 }
 else
 {
-    <table class="table">
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th>Model</th>
@@ -31,7 +32,7 @@ else
                     <td>@bicycle.SerialNumber</td>
                     <td>@bicycle.FrameSizeId</td>
                     <td>@bicycle.StartService</td>
-                    <td><button class="btn btn-green"  @onclick="@(() => BicycleServisedAndReadyForRent(bicycle.id))">Servised</button></td>
+                    <td><button class="btn btn-success" @onclick="@(() => BicycleServisedAndReadyForRent(bicycle))">Servised</button></td>
                 </tr>
             }
         </tbody>
@@ -41,12 +42,17 @@ else
 @code {
     private List<Bicycle> bicycles;
 
-    void BicycleServisedAndReadyForRent(int bicycleId){
-        // ToDo : change status of bike and add new date for service
-        var response = await http.GetJsonAsync<bool>("https://localhost:7052/api/service/done/" + orderNb);
-        // ToDo : refresh this page
-        if (response == true){
-            OnInitializedAsync();
+    private async Task BicycleServisedAndReadyForRent(Bicycle bicycle) 
+    {
+        bicycle.IsAvailable = true;
+        bicycle.IsInService = false;
+        bicycle.StartService = DateTime.UtcNow.AddDays(30);
+
+        var response = await http.PatchAsJsonAsync($"https://localhost:7052/api/service/done", bicycle);
+
+        if (response.IsSuccessStatusCode)
+        {
+            Navigation.NavigateTo("/service", true);
         }
     }
 

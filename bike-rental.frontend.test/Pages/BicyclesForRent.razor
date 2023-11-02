@@ -1,12 +1,12 @@
-@page "/bicycleslist"
+﻿@page "/bicyclesforrent"
 @using bike_rental.frontend.test.Models
 
 @inject HttpClient http
 @inject NavigationManager Navigation
 
-<PageTitle>Bicycles review</PageTitle>
+<PageTitle>Bicycles for rent</PageTitle>
 
-<h1>Bicycles</h1>
+<h1>Bicycles ready to rent</h1>
 
 @if (bicycles == null)
 {
@@ -51,12 +51,12 @@ else
 
         if (response.IsSuccessStatusCode)
         {
-            Navigation.NavigateTo("/bicycleslist", true);
+            Navigation.NavigateTo("/bicyclesforrent", true);
         }
     }
 
     protected override async Task OnInitializedAsync()
     {
-        bicycles = await http.GetFromJsonAsync<List<Bicycle>>("https://localhost:7052/api/bike");
+        bicycles = await http.GetFromJsonAsync<List<Bicycle>>("https://localhost:7052/api/bike/rent");
     }
 }
