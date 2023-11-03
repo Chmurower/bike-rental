@@ -1,7 +1,10 @@
 ﻿@page "/service"
+@using Microsoft.Extensions.Options;
 @using bike_rental.frontend.test.Models
+@using bike_rental.frontend.test.Services;
 
 @inject HttpClient http
+@inject IOptions<ApiSettings> _apiOptions;
 
 <PageTitle>Bicycles service room</PageTitle>
 
@@ -41,6 +44,6 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        bicycles = await http.GetFromJsonAsync<List<Bicycle>>("https://localhost:7052/api/service");
+        bicycles = await http.GetFromJsonAsync<List<Bicycle>>(_apiOptions.Value.Url + "api/service");
     }
 }

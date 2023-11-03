@@ -1,10 +1,13 @@
+using bike_rental.frontend.test.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-
 builder.Services.AddHttpClient();
+builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection(ApiSettings.ApiSettingName));
+
 
 var app = builder.Build();
 
