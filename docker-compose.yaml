@@ -46,11 +46,6 @@ services:
 
 volumes:
   dbdata:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: /var/lib/mysql #placeholder for the actual path to the database
 
 networks:
   mynetwork:
