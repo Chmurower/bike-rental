@@ -26,7 +26,7 @@ jobs:
       run: dotnet test ./bike-rental.backend/BikeRental.Api/BikeRental.Api.csproj
 
     - name: Build frontend
-      run: dotnet build ./bike-rental.frontend/bike-rental.frontend.test/bike-rental.frontend.test.csproj
+      run: dotnet build ./bike-rental.frontend.test/bike-rental.frontend.test.csproj
 
     - name: Test frontend
-      run: dotnet test ./bike-rental.frontend/bike-rental.frontend.test/bike-rental.frontend.test.csproj
+      run: dotnet test ./bike-rental.frontend.test/bike-rental.frontend.test.csproj
