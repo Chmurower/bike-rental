@@ -1,0 +1,32 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '7.0.x' # Change this to your .NET version
+
+    - name: Build backend
+      run: dotnet build ./bike-rental.backend/BikeRental.Api/BikeRental.Api.csproj
+
+    - name: Test backend
+      run: dotnet test ./bike-rental.backend/BikeRental.Api/BikeRental.Api.csproj
+
+    - name: Build frontend
+      run: dotnet build ./bike-rental.frontend/bike-rental.frontend.test/bike-rental.frontend.test.csproj
+
+    - name: Test frontend
+      run: dotnet test ./bike-rental.frontend/bike-rental.frontend.test/bike-rental.frontend.test.csproj
