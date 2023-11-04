@@ -34,7 +34,7 @@ jobs:
           action: "upload"
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "bike-rental.frontend.test/bin/Release/publish/wwwroot" # App source code path
+          app_location: "bike-rental.frontend.test/bin/Release/net7.0/publish/wwwroot" # App source code path
           output_location: "wwwroot" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
 
