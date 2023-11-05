@@ -24,7 +24,10 @@ namespace BikeRental.Services.Resource_Service
                 .Include(bi => bi.Bicycle)
                     .Include(ca => ca.Bicycle.Category)
                             .FirstOrDefault(x => x.Id == id);
-            return service;
+            if (service.Bicycle == null) {
+                service.Bicycle = new Bicycle();
+            }
+            return service ?? new ReservationTicket();
         }
     }
 }
