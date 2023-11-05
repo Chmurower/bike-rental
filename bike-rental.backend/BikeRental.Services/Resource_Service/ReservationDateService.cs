@@ -15,7 +15,7 @@ namespace BikeRental.Services.Resource_Service
         public ReservationDate GetReservationDateById(int id)
         {
             var service = _db.ReservationDates.FirstOrDefault(x => x.Id == id);
-            return service;
+            return service ?? new ReservationDate();
         }
     }
 }

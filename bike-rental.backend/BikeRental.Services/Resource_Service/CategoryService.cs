@@ -21,7 +21,8 @@ namespace BikeRental.Services.Resource_Service
         public Category GetCategoryById(int id)
         {
             var service = _db.Categorys.FirstOrDefault(x => x.Id == id);
-            return service;
+
+            return service ?? new Category();
         }
     }
 }

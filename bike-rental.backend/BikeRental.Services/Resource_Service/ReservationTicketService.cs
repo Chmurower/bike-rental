@@ -22,8 +22,21 @@ namespace BikeRental.Services.Resource_Service
         {
             var service = _db.ReservationTickets
                 .Include(bi => bi.Bicycle)
-                    .Include(ca => ca.Bicycle.Category)
+                    .Include(ca => ca.Bicycle != null ? ca.Bicycle.Category : null)
                             .FirstOrDefault(x => x.Id == id);
+
+            if (service == null)
+            {
+                return new ReservationTicket();
+            }
+            if (service.Bicycle == null) 
+            {
+                service.Bicycle = new Bicycle();
+            }
+            if (service.Bicycle.Category == null)
+            {
+                service.Bicycle.Category = new Category();
+            }
             return service;
         }
     }

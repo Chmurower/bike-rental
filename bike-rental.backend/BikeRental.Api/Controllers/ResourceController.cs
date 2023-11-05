@@ -45,5 +45,6 @@ namespace BikeRental.Api.Controllers
             var service = _dbResource.UpdateBikeData(bicycle);
             return Ok(service);
         }
+
     }
 }

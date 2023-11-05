@@ -21,7 +21,7 @@ namespace BikeRental.Services.Resource_Service
         public FrameSize GetFrameSizeById(int id)
         {
             var service = _db.FrameSizes.FirstOrDefault(x => x.Id == id);
-            return service;
+            return service ?? new FrameSize();
         }
     }
 }
