@@ -95,5 +95,7 @@ namespace BikeRental.Services.Resource_Service
 
             return UpdateBikeData(bicycle);
         }
+
+
     }
 }
