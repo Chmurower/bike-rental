@@ -72,6 +72,15 @@ namespace BikeRental.Services.Resource_Service
         {
             try
             {
+                //if (bicycle.Category == null)
+                //{
+               //     bicycle.Category = new();
+                //}
+                //if (bicycle.Reservations == null)
+                //{
+                //    bicycle.Reservations = new();
+                //}
+
                 _db.Bicycles.Add(bicycle);
                 _db.SaveChanges();
                 return new ResponseService<bool>
