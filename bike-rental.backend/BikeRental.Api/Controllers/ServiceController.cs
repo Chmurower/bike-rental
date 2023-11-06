@@ -32,5 +32,12 @@ namespace BikeRental.Api.Controllers
             var service = _dbResource.UpdateBikeData(bicycle);
             return Ok(service);
         }
+
+        [HttpPost("api/service/create/bicycle")]
+        public IActionResult CreateNewBicycle([FromBody] Bicycle bicycle)
+        {
+            var service = _dbResource.CeateNewBike(bicycle);
+            return Ok(service);
+        }
     }
 }

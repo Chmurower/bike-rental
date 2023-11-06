@@ -1,5 +1,6 @@
 using BikeRental.Models;
 using BikeRental.Models.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BikeRental.Services.Resource_Service
 {
@@ -54,6 +55,42 @@ namespace BikeRental.Services.Resource_Service
                     Time = DateTime.UtcNow,
                     Data = true
                 };
+            }
+            catch(Exception e)
+            {
+                return new ResponseService<bool>
+                {
+                    IsSucess = false,
+                    Message = e.StackTrace,
+                    Time = DateTime.UtcNow,
+                    Data = false
+                };
+            }
+        }
+
+        public ResponseService<bool> CeateNewBike(Bicycle bicycle)
+        {
+            try
+            {
+                //if (bicycle.Category == null)
+                //{
+               //     bicycle.Category = new();
+                //}
+                //if (bicycle.Reservations == null)
+                //{
+                //    bicycle.Reservations = new();
+                //}
+
+                _db.Bicycles.Add(bicycle);
+                _db.SaveChanges();
+                return new ResponseService<bool>
+                {
+                    IsSucess = true,
+                    Message = "Bicycle object updated.",
+                    Time = DateTime.UtcNow,
+                    Data = true
+                };
+
             }
             catch(Exception e)
             {
