@@ -6,7 +6,8 @@
 
 <PageTitle>Bicycles service room</PageTitle>
 
-<h1>Bicycles waiting for service</h1>
+<h1>Bicycles service</h1>
+<td><button class="btn btn-secondary" @onclick="@(() => SendToFormularWithImplementationOfNewBicycle())">Add new bicycle</button></td>
 
 @if (bicycles == null)
 {
@@ -54,6 +55,11 @@ else
         {
             Navigation.NavigateTo("/service", true);
         }
+    }
+
+    private async Task SendToFormularWithImplementationOfNewBicycle()
+    {
+        Navigation.NavigateTo("/newbicycle", true);
     }
 
     protected override async Task OnInitializedAsync()

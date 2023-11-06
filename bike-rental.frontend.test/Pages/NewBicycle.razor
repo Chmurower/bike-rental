@@ -1,0 +1,57 @@
+﻿@page "/newbicycle"
+@using bike_rental.frontend.test.Models;
+
+@inject HttpClient http
+
+<h3>New Bicycle</h3>
+
+<form>
+    <div class="form-group">
+        <label for="inputCategory">Category</label>
+        <select id="inputCategory" class="form-control">
+            <option selected>Choose category...</option>
+            <option>...</option>
+            @foreach(var item in CategoryList)
+            {
+                <option value="@item.Type">@item.Type</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="formGroupExampleInput">Model Name</label>
+        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+    </div>
+    <div class="form-group">
+        <label for="inputFramesize">Frame Size</label>
+        <select id="inputFramesize" class="form-control">
+            <option selected>Choose Frame Size...</option>
+            <option>...</option>
+            @foreach (var item in FrameSizeList)
+            {
+                <option value="@item.Size">@item.Size</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="formGroupExampleInput2">Serial Number</label>
+        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+    </div>
+    <div class="form-group">
+        <label for="formGroupExampleInput2">Serial Number</label>
+        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+    </div>
+</form>
+
+
+@code {
+    public List<Category> CategoryList = new List<Category>();
+    public List<FrameSize> FrameSizeList = new List<FrameSize>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        CategoryList = await http.GetFromJsonAsync<List<Category>>("https://localhost:7052/api/category") ?? new List<Category>();
+
+        FrameSizeList = await http.GetFromJsonAsync<List<FrameSize>>("https://localhost:7052/api/framesize") ?? new List<FrameSize>();
+    }
+}
