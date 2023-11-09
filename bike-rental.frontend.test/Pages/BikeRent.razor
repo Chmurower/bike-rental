@@ -1,0 +1,46 @@
+﻿@page "/bicyclesforrent/{id:int}"
+
+@using bike_rental.frontend.test.Models
+
+@inject HttpClient http
+
+<h3>BikeRent</h3>
+
+
+@if (bicycle.Reservations == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Start reservation</th>
+                <th>End reservation</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var reservation in bicycle.Reservations)
+            {
+                <tr>
+                    <td>@reservation.StartReservation</td>
+                    <td>@reservation.EndReservation</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    [Parameter]
+    public int Id { get; set; } // bicycle primary key
+
+    Bicycle bicycle = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        bicycle = await http.GetFromJsonAsync<Bicycle>("https://localhost:7052/api/bike/" + Id);
+    }
+
+}
