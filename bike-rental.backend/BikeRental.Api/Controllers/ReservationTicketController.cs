@@ -1,4 +1,5 @@
-﻿using BikeRental.Services.Resource_Service;
+﻿using BikeRental.Models.Models;
+using BikeRental.Services.Resource_Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BikeRental.Api.Controllers
@@ -26,6 +27,13 @@ namespace BikeRental.Api.Controllers
         {
             var reservations = _dbReservationTicket.GetAllReservations();
             return Ok(reservations);
+        }
+
+        [HttpPost("api/reservationticket/create")]
+        public IActionResult CreateNewBicycle([FromBody] ReservationTicket reservation)
+        {
+            var service = _dbReservationTicket.CreateReservationTicket(reservation);
+            return Ok(service);
         }
 
     }
