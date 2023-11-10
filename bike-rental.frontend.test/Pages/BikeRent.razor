@@ -3,6 +3,7 @@
 @using bike_rental.frontend.test.Models
 
 @inject HttpClient http
+@inject NavigationManager Navigation
 
 <h3>BikeRent</h3>
 
@@ -85,9 +86,15 @@
         bicycle.IsRent = true;
 
         // create reservation
+        var responseReservationCreate = await http.PostAsJsonAsync<ReservationTicket>("https://localhost:7052/api/reservationticket/create", reservation);
         // if reservation create true
-        // update bike bool info
-        var responseBikeUpdate = await http.PatchAsJsonAsync($"https://localhost:7052/api/service/done", bicycle);
+        if (responseReservationCreate.IsSuccessStatusCode)
+        {
+            // Update bike data
+            var responseBikeUpdate = await http.PatchAsJsonAsync($"https://localhost:7052/api/bike/update", bicycle);
+        }
+
+        Navigation.NavigateTo("/bicyclesforrent", true);
     }
 
     protected override async Task OnInitializedAsync()
