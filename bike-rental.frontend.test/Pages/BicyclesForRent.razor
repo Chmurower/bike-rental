@@ -21,6 +21,7 @@ else
                 <th>Frame size id</th>
                 <th>Is available</th>
                 <th>Is in service</th>
+                <th>Reservation</th>
                 <th>Service Needed</th>
             </tr>
         </thead>
@@ -32,6 +33,7 @@ else
                     <td>@bicycle.FrameSizeId</td>
                     <td>@bicycle.IsAvailable</td>
                     <td>@bicycle.IsInService</td>
+                    <td><button class="btn btn-warning" @onclick="@(() => ReserveThisBike(bicycle))">Reserve</button></td>
                     <td><button class="btn btn-warning" @onclick="@(() => SendBicycleToService(bicycle))">Send to service</button></td>
                 </tr>
             }
@@ -53,6 +55,13 @@ else
         {
             Navigation.NavigateTo("/bicyclesforrent", true);
         }
+    }
+
+    private async Task ReserveThisBike(Bicycle bicycle)
+    {
+        int id = bicycle.Id;
+        Navigation.NavigateTo("/rentit/" + bicycle.Id, true);
+        //Navigation.NavigateTo("/rentit", true);
     }
 
     protected override async Task OnInitializedAsync()

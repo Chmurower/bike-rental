@@ -12,12 +12,14 @@ namespace BikeRental.Services.Resource_Service
             _db = db;
         }
 
+        // GET
         public List<ReservationTicket> GetAllReservations()
         {
             var service = _db.ReservationTickets.ToList();
             return service;
         }
 
+        // GET
         public ReservationTicket GetReservationById(int id)
         {
             var service = _db.ReservationTickets
@@ -29,7 +31,7 @@ namespace BikeRental.Services.Resource_Service
             {
                 return new ReservationTicket();
             }
-            if (service.Bicycle == null) 
+            if (service.Bicycle == null)
             {
                 service.Bicycle = new Bicycle();
             }
@@ -39,5 +41,34 @@ namespace BikeRental.Services.Resource_Service
             }
             return service;
         }
+
+        // CREATE
+        public ResponseService<ReservationTicket> CreateReservationTicket(ReservationTicket reservation)
+        {
+            try
+            {
+                _db.ReservationTickets.Add(reservation);
+                // Add
+                _db.SaveChanges();
+                return new ResponseService<ReservationTicket>
+                {
+                    IsSucess = true,
+                    Message = "Order added.",
+                    Time = DateTime.UtcNow,
+                    Data = reservation
+                };
+            }
+            catch (Exception e)
+            {
+                return new ResponseService<ReservationTicket>
+                {
+                    IsSucess = false,
+                    Message = e.StackTrace,
+                    Time = DateTime.UtcNow,
+                    Data = reservation
+                };
+            }
+        }
+
     }
 }
