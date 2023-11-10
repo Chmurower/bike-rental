@@ -31,21 +31,21 @@
 <form class="row g-3 needs-validation" novalidate>
   <div class="col-md-4">
     <label for="validationCustom01" class="form-label">First name</label>
-    <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
+        <input type="text" class="form-control" id="validationCustom01" @bind="reservation.FirstName"  required">
     <div class="valid-feedback">
       Looks good!
     </div>
   </div>
   <div class="col-md-4">
     <label for="validationCustom02" class="form-label">Last name</label>
-    <input type="text" class="form-control" id="validationCustom02" value="Otto" required>
+        <input type="text" class="form-control" id="validationCustom02" @bind="reservation.LastName" required>
     <div class="valid-feedback">
       Looks good!
     </div>
   </div>
   <div class="col-md-6">
     <label for="validationCustom03" class="form-label">ID nummber</label>
-    <input type="text" class="form-control" id="validationCustom03" required>
+        <input type="text" class="form-control" id="validationCustom03" @bind="reservation.IdSerial" required>
     <div class="invalid-feedback">
       Please provide a valid city.
     </div>
@@ -62,7 +62,7 @@
     </div>
   </div>
   <div class="col-12">
-    <button class="btn btn-primary" type="submit">Reservation</button>
+        <button class="btn btn-primary" @onclick="MakeReservation" type="submit">Reservation</button>
   </div>
 </form>
 
@@ -74,7 +74,21 @@
     Category category = new();
     FrameSize framesize = new();
 
+    ReservationTicket reservation = new();
 
+    private async Task MakeReservation()
+    {
+        reservation.BicycleId = bicycle.Id;
+        reservation.ReservationDate = DateTime.UtcNow;
+
+        bicycle.IsAvailable = false;
+        bicycle.IsRent = true;
+
+        // create reservation
+        // if reservation create true
+        // update bike bool info
+        var responseBikeUpdate = await http.PatchAsJsonAsync($"https://localhost:7052/api/service/done", bicycle);
+    }
 
     protected override async Task OnInitializedAsync()
     {
@@ -82,5 +96,4 @@
         category = await http.GetFromJsonAsync<Category>("https://localhost:7052/api/category/" + bicycle.CategoryId);
         framesize = await http.GetFromJsonAsync<FrameSize>("https://localhost:7052/api/framesize/" + bicycle.FrameSizeId);
     }
-
 }
