@@ -6,6 +6,24 @@
 
 <h3>BikeRent</h3>
 
+<form>
+    <fieldset disabled>
+        <legend>xxxx</legend>
+        <div class="mb-3">
+            <label for="disabledTextInput" class="form-label">@category.Type</label>
+            <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
+        </div>
+        <div class="mb-3">
+            <label for="disabledTextInput" class="form-label">@bicycle.ModelName</label>
+            <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
+        </div>
+        <div class="mb-3">
+            <label for="disabledTextInput" class="form-label">@framesize.Size</label>
+            <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
+        </div>
+    </fieldset>
+</form>
+
 
 @if (bicycle.Reservations == null)
 {
@@ -37,10 +55,14 @@ else
     public int Id { get; set; } // bicycle primary key
 
     Bicycle bicycle = new();
+    Category category = new();
+    FrameSize framesize = new();
 
     protected override async Task OnInitializedAsync()
     {
         bicycle = await http.GetFromJsonAsync<Bicycle>("https://localhost:7052/api/bike/" + Id);
+        category = await http.GetFromJsonAsync<Category>("https://localhost:7052/api/category/" + bicycle.CategoryId);
+        framesize = await http.GetFromJsonAsync<FrameSize>("https://localhost:7052/api/category/" + bicycle.FrameSizeId);
     }
 
 }
