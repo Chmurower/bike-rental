@@ -7,6 +7,6 @@ namespace BikeRental.Services.Resource_Service
         public List<ReservationTicket> GetAllReservations();
         public ReservationTicket GetReservationById(int id);
         public ResponseService<ReservationTicket> CreateReservationTicket(ReservationTicket reservation);
-        public ResponseService<ReservationTicket> DeleteReservationTicket(ReservationTicket reservation);
+        public ResponseService<ReservationTicket> DeleteReservationTicket(int id);
     }
 }

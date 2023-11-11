@@ -36,10 +36,10 @@ namespace BikeRental.Api.Controllers
             return Ok(service);
         }
 
-        [HttpDelete("api/reservationticket/close")]
-        public IActionResult DeleteReservationTicket([FromBody] ReservationTicket reservation)
+        [HttpDelete("api/reservationticket/close/{id}")]
+        public IActionResult DeleteReservationTicket(int id)
         {
-            var service = _dbReservationTicket.DeleteReservationTicket(reservation);
+            var service = _dbReservationTicket.DeleteReservationTicket(id);
             return Ok(service);
         }
 

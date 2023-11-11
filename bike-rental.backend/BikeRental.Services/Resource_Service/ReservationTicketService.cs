@@ -73,8 +73,19 @@ namespace BikeRental.Services.Resource_Service
         }
 
         // DELETE
-        public ResponseService<ReservationTicket> DeleteReservationTicket(ReservationTicket reservation)
+        public ResponseService<ReservationTicket> DeleteReservationTicket(int id)
         {
+            var reservation = _db.ReservationTickets.Find(id);
+            if(reservation == null)
+            {
+                return new ResponseService<ReservationTicket>
+                {
+                    IsSucess = false,
+                    Message = "No reservation ticket found.",
+                    Time = DateTime.UtcNow,
+                    Data = reservation
+                };
+            }
             try
             {
                 _db.ReservationTickets.Remove(reservation);
