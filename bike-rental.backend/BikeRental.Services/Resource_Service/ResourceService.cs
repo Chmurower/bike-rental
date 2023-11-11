@@ -104,5 +104,42 @@ namespace BikeRental.Services.Resource_Service
             }
         }
 
+        public ResponseService<bool> DeleteBike(int id)
+        {
+            var bike = _db.Bicycles.Find(id);
+            if(bike == null)
+            {
+                return new ResponseService<bool>
+                {
+                    IsSucess = false,
+                    Message = "Bicycle not found.",
+                    Time = DateTime.UtcNow,
+                    Data = false
+                };
+            }
+            try
+            {
+                _db.Bicycles.Remove(bike);
+                // delete
+                _db.SaveChanges();
+                return new ResponseService<bool>
+                {
+                    IsSucess = true,
+                    Message = "Bicycle removed from database.",
+                    Time = DateTime.UtcNow,
+                    Data = true
+                };
+            }
+            catch(Exception e)
+            {
+                return new ResponseService<bool>
+                {
+                    IsSucess = false,
+                    Message = "Bicycle not removed.",
+                    Time = DateTime.UtcNow,
+                    Data = false
+                };
+            }
+        }
     }
 }
