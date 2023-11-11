@@ -1,5 +1,6 @@
 using BikeRental.Models;
 using BikeRental.Models.Models;
+using Microsoft.EntityFrameworkCore;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BikeRental.Services.Resource_Service
@@ -15,7 +16,9 @@ namespace BikeRental.Services.Resource_Service
 
         public List<Bicycle> GetAllBikes()
         {
-            var service = _db.Bicycles.ToList();
+            var service = _db.Bicycles
+                    .Include(c => c.Category)
+                        .ToList();
             return service;
         }
 
@@ -27,7 +30,8 @@ namespace BikeRental.Services.Resource_Service
         {
             var service = _db.Bicycles
                 .Where(a => a.IsAvailable == true)
-                    .ToList();
+                    .Include(c => c.Category)
+                        .ToList();
             return service;
         }
 
