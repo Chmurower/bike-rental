@@ -72,5 +72,33 @@ namespace BikeRental.Services.Resource_Service
             }
         }
 
+        // DELETE
+        public ResponseService<ReservationTicket> DeleteReservationTicket(ReservationTicket reservation)
+        {
+            try
+            {
+                _db.ReservationTickets.Remove(reservation);
+                // delete
+                _db.SaveChanges();
+                return new ResponseService<ReservationTicket>
+                {
+                    IsSucess = true,
+                    Message = "reservation deleted.",
+                    Time = DateTime.UtcNow,
+                    Data = reservation
+                };
+            }
+            catch (Exception e)
+            {
+                return new ResponseService<ReservationTicket>
+                {
+                    IsSucess = false,
+                    Message = e.StackTrace,
+                    Time = DateTime.UtcNow,
+                    Data = reservation
+                };
+            }
+        }
+
     }
 }
