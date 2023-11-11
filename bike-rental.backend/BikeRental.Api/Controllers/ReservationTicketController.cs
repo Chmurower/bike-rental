@@ -36,5 +36,12 @@ namespace BikeRental.Api.Controllers
             return Ok(service);
         }
 
+        [HttpDelete("api/reservationticket/close")]
+        public IActionResult DeleteReservationTicket([FromBody] ReservationTicket reservation)
+        {
+            var service = _dbReservationTicket.DeleteReservationTicket(reservation);
+            return Ok(service);
+        }
+
     }
 }
