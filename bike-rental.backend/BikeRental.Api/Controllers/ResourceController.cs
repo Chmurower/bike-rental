@@ -54,5 +54,13 @@ namespace BikeRental.Api.Controllers
             return Ok(service);
         }
 
+        // DELETE
+        [HttpDelete("api/bike/remove/{id}")]
+        public IActionResult DeleteBike(int id)
+        {
+            var service = _dbResource.DeleteBike(id);
+            return Ok(service);
+        }
+
     }
 }
