@@ -1,5 +1,78 @@
-﻿<h3>BikeReturn</h3>
+﻿@page "/bicyclereturn"
+@using bike_rental.frontend.test.Models;
+
+@inject HttpClient http
+@inject NavigationManager Navigation
+
+<PageTitle>Return bicycle</PageTitle>
+
+<h1>Bike return</h1>
+
+@if (bicycles == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Model</th>
+                <th>Frame size</th>
+                <th>Serian number</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var bicycle in bicycles)
+            {
+                <tr>
+                    <td>@bicycle.Category.Type</td>
+                    <td>@bicycle.ModelName</td>
+                    <td>@bicycle.FrameSize.Size</td>
+                    <td>@bicycle.SerialNumber</td>
+                    <td><button class="btn btn-warning" @onclick="@(() => ReturnThisBike(bicycle))">Return Bike</button></td>
+                    <td><button class="btn btn-warning" @onclick="@(() => ReturnBikeAndSendToService(bicycle))">Return & Service</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
 
 @code {
+    private List<Bicycle> bicycles;
 
+    private async Task ReturnThisBike(Bicycle bicycle)
+    {
+        bicycle.IsAvailable = true;
+        bicycle.IsInService = false;
+        bicycle.IsRent = false;
+        // Update db
+        var response = await http.PatchAsJsonAsync($"https://localhost:7052/api/service/done", bicycle);
+
+        if (response.IsSuccessStatusCode)
+        {
+            Navigation.NavigateTo("/bicyclereturn", true);
+        }
+    }
+
+    private async Task ReturnBikeAndSendToService(Bicycle bicycle)
+    {
+        bicycle.IsAvailable = false;
+        bicycle.IsInService = true;
+        bicycle.IsRent = false;
+        var response = await http.PatchAsJsonAsync($"https://localhost:7052/api/service/done", bicycle);
+        // Update db
+        if (response.IsSuccessStatusCode)
+        {
+            Navigation.NavigateTo("/bicyclereturn", true);
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        // ask endpoint for bicycle thet are already rented
+       bicycles = await http.GetFromJsonAsync<List<Bicycle>>("https://localhost:7052/api/bike");
+    }
 }
