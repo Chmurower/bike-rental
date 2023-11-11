@@ -14,16 +14,21 @@ namespace BikeRental.Services.Resource_Service
             _db = db;
         }
 
+        /// <summary>
+        /// Returns list of all bicycles including subobjects
+        /// </summary>
+        /// <returns></returns>
         public List<Bicycle> GetAllBikes()
         {
             var service = _db.Bicycles
                     .Include(c => c.Category)
-                        .ToList();
+                        .Include(fs => fs.FrameSize)
+                            .ToList();
             return service;
         }
 
         /// <summary>
-        /// Returns list of bicycles which are available for rent
+        /// Returns list of bicycles which are available for rent includeing all subobjects
         /// </summary>
         /// <returns>List<Bicycle></returns>
         public List<Bicycle> GetAllBikesReadyToRent()
@@ -31,7 +36,8 @@ namespace BikeRental.Services.Resource_Service
             var service = _db.Bicycles
                 .Where(a => a.IsAvailable == true)
                     .Include(c => c.Category)
-                        .ToList();
+                        .Include(fs => fs.FrameSize)
+                            .ToList();
             return service;
         }
 
