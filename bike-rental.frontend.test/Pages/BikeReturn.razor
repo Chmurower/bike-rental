@@ -33,8 +33,8 @@ else
                     <td>@reservation.ReservationDate</td>
                     <td>@reservation.Bicycle.ModelName</td>
                     <td>@reservation.Bicycle.SerialNumber</td>
-                    <td><button class="btn btn-warning" @onclick="@(() => ReturnThisBike(reservation.Bicycle))">Return Bike</button></td>
-                    <td><button class="btn btn-warning" @onclick="@(() => ReturnBikeAndSendToService(reservation.Bicycle))">Return & Service</button></td>
+                    <td><button class="btn btn-warning" @onclick="@(() => ReturnThisBike(reservation))">Return Bike</button></td>
+                    <td><button class="btn btn-warning" @onclick="@(() => ReturnBikeAndSendToService(reservation))">Return & Service</button></td>
                 </tr>
             }
         </tbody>
@@ -45,30 +45,32 @@ else
 @code {
     private List<ReservationTicket> reservations;
 
-    private async Task ReturnThisBike(Bicycle bicycle)
+    private async Task ReturnThisBike(ReservationTicket reservation)
     {
-        bicycle.IsAvailable = true;
-        bicycle.IsInService = false;
-        bicycle.IsRent = false;
+        reservation.Bicycle.IsAvailable = true;
+        reservation.Bicycle.IsInService = false;
+        reservation.Bicycle.IsRent = false;
         // Update db
-        //var response = await http.PatchAsJsonAsync($"https://localhost:7052/api/service/done", bicycle);
-
-        /*
-        if (response.IsSuccessStatusCode)
+        var responseBicycle = await http.PatchAsJsonAsync($"https://localhost:7052/api/bike/update", reservation.Bicycle);
+        // close reservation ticket
+        var responseReservation = await http.PatchAsJsonAsync($"https://localhost:7052/api/reservationticket/close", reservation.Id);
+        if (responseBicycle.IsSuccessStatusCode && responseReservation.IsSuccessStatusCode)
         {
             Navigation.NavigateTo("/bicyclereturn", true);
         }
-        */
     }
 
-    private async Task ReturnBikeAndSendToService(Bicycle bicycle)
+    private async Task ReturnBikeAndSendToService(ReservationTicket reservation)
     {
-        bicycle.IsAvailable = false;
-        bicycle.IsInService = true;
-        bicycle.IsRent = false;
-        var response = await http.PatchAsJsonAsync($"https://localhost:7052/api/service/done", bicycle);
+        reservation.Bicycle.IsAvailable = false;
+        reservation.Bicycle.IsInService = true;
+        reservation.Bicycle.IsRent = false;
         // Update db
-        if (response.IsSuccessStatusCode)
+        var responseBicycle = await http.PatchAsJsonAsync($"https://localhost:7052/api/bike/update", reservation.Bicycle);
+        // close reservation ticket
+        var responseReservation = await http.PatchAsJsonAsync($"https://localhost:7052/api/reservationticket/close", reservation.Id);
+
+        if (responseBicycle.IsSuccessStatusCode && responseReservation.IsSuccessStatusCode)
         {
             Navigation.NavigateTo("/bicyclereturn", true);
         }
