@@ -53,7 +53,7 @@ else
         // Update db
         var responseBicycle = await http.PatchAsJsonAsync($"https://localhost:7052/api/bike/update", reservation.Bicycle);
         // close reservation ticket
-        var responseReservation = await http.DeleteAsync($"https://localhost:7052/api/reservationticket/close" + reservation.Id);
+        var responseReservation = await http.DeleteAsync($"https://localhost:7052/api/reservationticket/close/" + reservation.Id);
         if (responseBicycle.IsSuccessStatusCode && responseReservation.IsSuccessStatusCode)
         {
             Navigation.NavigateTo("/bicyclereturn", true);
@@ -68,7 +68,7 @@ else
         // Update db
         var responseBicycle = await http.PatchAsJsonAsync($"https://localhost:7052/api/bike/update", reservation.Bicycle);
         // close reservation ticket
-        var responseReservation = await http.DeleteAsync($"https://localhost:7052/api/reservationticket/close" + reservation.Id);
+        var responseReservation = await http.DeleteAsync($"https://localhost:7052/api/reservationticket/close/" + reservation.Id);
 
         if (responseBicycle.IsSuccessStatusCode && responseReservation.IsSuccessStatusCode)
         {
