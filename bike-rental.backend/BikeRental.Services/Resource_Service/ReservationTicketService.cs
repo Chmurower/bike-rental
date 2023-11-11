@@ -15,7 +15,9 @@ namespace BikeRental.Services.Resource_Service
         // GET
         public List<ReservationTicket> GetAllReservations()
         {
-            var service = _db.ReservationTickets.ToList();
+            var service = _db.ReservationTickets
+                .Include(b => b.Bicycle) 
+                    .ToList();
             return service;
         }
 
