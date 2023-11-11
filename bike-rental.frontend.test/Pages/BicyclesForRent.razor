@@ -29,7 +29,7 @@ else
                 <tr>
                     <td>@bicycle.Category.Type</td>
                     <td>@bicycle.ModelName</td>
-                    <td>@bicycle.FrameSizeId</td>
+                    <td>@bicycle.FrameSize.Size</td>
                     <td>@bicycle.SerialNumber</td>
                     <td><button class="btn btn-warning" @onclick="@(() => ReserveThisBike(bicycle))">Reserve</button></td>
                     <td><button class="btn btn-warning" @onclick="@(() => SendBicycleToService(bicycle))">Send to service</button></td>
