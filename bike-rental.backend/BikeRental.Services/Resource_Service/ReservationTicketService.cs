@@ -15,7 +15,9 @@ namespace BikeRental.Services.Resource_Service
         // GET
         public List<ReservationTicket> GetAllReservations()
         {
-            var service = _db.ReservationTickets.ToList();
+            var service = _db.ReservationTickets
+                .Include(b => b.Bicycle) 
+                    .ToList();
             return service;
         }
 
@@ -54,6 +56,45 @@ namespace BikeRental.Services.Resource_Service
                 {
                     IsSucess = true,
                     Message = "Order added.",
+                    Time = DateTime.UtcNow,
+                    Data = reservation
+                };
+            }
+            catch (Exception e)
+            {
+                return new ResponseService<ReservationTicket>
+                {
+                    IsSucess = false,
+                    Message = e.StackTrace,
+                    Time = DateTime.UtcNow,
+                    Data = reservation
+                };
+            }
+        }
+
+        // DELETE
+        public ResponseService<ReservationTicket> DeleteReservationTicket(int id)
+        {
+            var reservation = _db.ReservationTickets.Find(id);
+            if(reservation == null)
+            {
+                return new ResponseService<ReservationTicket>
+                {
+                    IsSucess = false,
+                    Message = "No reservation ticket found.",
+                    Time = DateTime.UtcNow,
+                    Data = reservation
+                };
+            }
+            try
+            {
+                _db.ReservationTickets.Remove(reservation);
+                // delete
+                _db.SaveChanges();
+                return new ResponseService<ReservationTicket>
+                {
+                    IsSucess = true,
+                    Message = "reservation deleted.",
                     Time = DateTime.UtcNow,
                     Data = reservation
                 };

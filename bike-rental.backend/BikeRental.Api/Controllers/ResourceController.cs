@@ -46,5 +46,21 @@ namespace BikeRental.Api.Controllers
             return Ok(service);
         }
 
+        // PATCH
+        [HttpPatch("api/bike/update")]
+        public IActionResult UpdateBikeData([FromBody] Bicycle bicycle)
+        {
+            var service = _dbResource.UpdateBikeData(bicycle);
+            return Ok(service);
+        }
+
+        // DELETE
+        [HttpDelete("api/bike/remove/{id}")]
+        public IActionResult DeleteBike(int id)
+        {
+            var service = _dbResource.DeleteBike(id);
+            return Ok(service);
+        }
+
     }
 }

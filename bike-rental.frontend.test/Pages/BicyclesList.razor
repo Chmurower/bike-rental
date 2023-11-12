@@ -18,10 +18,11 @@ else
         <thead>
             <tr>
                 <th>Model</th>
-                <th>Frame size id</th>
+                <th>Serial nb</th>
+                <th>Frame size</th>
                 <th>Is available</th>
                 <th>Is in service</th>
-                <th>Service Needed</th>
+                <th>Is rented</th>
             </tr>
         </thead>
         <tbody>
@@ -29,10 +30,11 @@ else
             {
                 <tr>
                     <td>@bicycle.ModelName</td>
-                    <td>@bicycle.FrameSizeId</td>
+                    <td>@bicycle.SerialNumber</td>
+                    <td>@bicycle.FrameSize.Size</td>
                     <td>@bicycle.IsAvailable</td>
                     <td>@bicycle.IsInService</td>
-                    <td><button class="btn btn-warning" @onclick="@(() => SendBicycleToService(bicycle))">Send to service</button></td>
+                    <td>@bicycle.IsRent</td>
                 </tr>
             }
         </tbody>

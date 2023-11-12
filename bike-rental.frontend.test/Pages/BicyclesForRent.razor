@@ -17,22 +17,20 @@ else
     <table class="table table-hover">
         <thead>
             <tr>
+                <th>Category</th>
                 <th>Model</th>
-                <th>Frame size id</th>
-                <th>Is available</th>
-                <th>Is in service</th>
-                <th>Reservation</th>
-                <th>Service Needed</th>
+                <th>Frame size</th>
+                <th>Serian number</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var bicycle in bicycles)
             {
                 <tr>
+                    <td>@bicycle.Category.Type</td>
                     <td>@bicycle.ModelName</td>
-                    <td>@bicycle.FrameSizeId</td>
-                    <td>@bicycle.IsAvailable</td>
-                    <td>@bicycle.IsInService</td>
+                    <td>@bicycle.FrameSize.Size</td>
+                    <td>@bicycle.SerialNumber</td>
                     <td><button class="btn btn-warning" @onclick="@(() => ReserveThisBike(bicycle))">Reserve</button></td>
                     <td><button class="btn btn-warning" @onclick="@(() => SendBicycleToService(bicycle))">Send to service</button></td>
                 </tr>

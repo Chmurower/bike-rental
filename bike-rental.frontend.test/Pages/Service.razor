@@ -8,6 +8,7 @@
 
 <h1>Bicycles service</h1>
 <td><button class="btn btn-secondary" @onclick="@(() => SendToFormularWithImplementationOfNewBicycle())">Add new bicycle</button></td>
+<td><button class="btn btn-secondary" @onclick="@(() => SendToFormularWithDeletionOfBicycle())">Scrap bicycle</button></td>
 
 @if (bicycles == null)
 {
@@ -60,6 +61,11 @@ else
     private async Task SendToFormularWithImplementationOfNewBicycle()
     {
         Navigation.NavigateTo("/newbicycle", true);
+    }
+
+    private async Task SendToFormularWithDeletionOfBicycle()
+    {
+        Navigation.NavigateTo("/deletebicycle", true);
     }
 
     protected override async Task OnInitializedAsync()
