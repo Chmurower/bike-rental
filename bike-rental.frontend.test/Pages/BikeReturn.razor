@@ -33,7 +33,7 @@ else
                     <td>@reservation.ReservationDate</td>
                     <td>@reservation.Bicycle.ModelName</td>
                     <td>@reservation.Bicycle.SerialNumber</td>
-                    <td><button class="btn btn-warning" @onclick="@(() => ReturnThisBike(reservation))">Return Bike</button></td>
+                    <td><button class="btn btn-success" @onclick="@(() => ReturnThisBike(reservation))">Return Bike</button></td>
                     <td><button class="btn btn-warning" @onclick="@(() => ReturnBikeAndSendToService(reservation))">Return & Service</button></td>
                 </tr>
             }

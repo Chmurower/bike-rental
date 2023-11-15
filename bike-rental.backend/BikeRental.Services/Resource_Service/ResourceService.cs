@@ -1,7 +1,6 @@
 using BikeRental.Models;
 using BikeRental.Models.Models;
 using Microsoft.EntityFrameworkCore;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BikeRental.Services.Resource_Service
 {
@@ -15,9 +14,9 @@ namespace BikeRental.Services.Resource_Service
         }
 
         /// <summary>
-        /// Returns list of all bicycles including subobjects
+        /// Returns list of all bicycles including subobjects.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List ob Bicycle objects and its sub objects.</Bicycle></returns>
         public List<Bicycle> GetAllBikes()
         {
             var service = _db.Bicycles
@@ -28,9 +27,9 @@ namespace BikeRental.Services.Resource_Service
         }
 
         /// <summary>
-        /// Returns list of bicycles which are available for rent includeing all subobjects
+        /// Returns list of bicycles which are available for rent including all sub objects.
         /// </summary>
-        /// <returns>List<Bicycle></returns>
+        /// <returns>LIst of Bicyccle objects filtered by IsAvailable == true</returns>
         public List<Bicycle> GetAllBikesReadyToRent()
         {
             var service = _db.Bicycles
@@ -41,6 +40,11 @@ namespace BikeRental.Services.Resource_Service
             return service;
         }
 
+        /// <summary>
+        /// Get Bicycle object by bicycle id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Bicycle object.</returns>
         public Bicycle GetBikeById(int id)
         {
             var service = _db.Bicycles.FirstOrDefault(x => x.Id == id);
@@ -48,7 +52,7 @@ namespace BikeRental.Services.Resource_Service
         }
 
         /// <summary>
-        /// Update bicycle data
+        /// Update bicycle data.
         /// </summary>
         /// <param name="bicycle">Bicycle object</param>
         /// <returns>ResponseService object</returns>
@@ -78,6 +82,11 @@ namespace BikeRental.Services.Resource_Service
             }
         }
 
+        /// <summary>
+        /// Create new Bicycle object in database.
+        /// </summary>
+        /// <param name="bicycle"></param>
+        /// <returns>ResponseService object.</returns>
         public ResponseService<bool> CeateNewBike(Bicycle bicycle)
         {
             try
@@ -104,6 +113,11 @@ namespace BikeRental.Services.Resource_Service
             }
         }
 
+        /// <summary>
+        /// Delete Bicycle object by bicycle object id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>ResponseService object.</returns>
         public ResponseService<bool> DeleteBike(int id)
         {
             var bike = _db.Bicycles.Find(id);

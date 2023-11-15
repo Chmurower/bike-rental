@@ -24,7 +24,6 @@ namespace BikeRental.Api.Controllers
            return Ok(service);
         }
 
-
         // PATCH
         [HttpPatch("api/service/done")]
         public IActionResult FinishBicycleServiceByBicycleId([FromBody] Bicycle bicycle)
@@ -33,6 +32,7 @@ namespace BikeRental.Api.Controllers
             return Ok(service);
         }
 
+        // POST
         [HttpPost("api/service/create/bicycle")]
         public IActionResult CreateNewBicycle([FromBody] Bicycle bicycle)
         {

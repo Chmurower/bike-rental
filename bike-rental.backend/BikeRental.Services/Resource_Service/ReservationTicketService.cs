@@ -12,7 +12,10 @@ namespace BikeRental.Services.Resource_Service
             _db = db;
         }
 
-        // GET
+        /// <summary>
+        /// Returns all reservation tickets.
+        /// </summary>
+        /// <returns>ReservationsTicket object.</returns>
         public List<ReservationTicket> GetAllReservations()
         {
             var service = _db.ReservationTickets
@@ -21,7 +24,11 @@ namespace BikeRental.Services.Resource_Service
             return service;
         }
 
-        // GET
+        /// <summary>
+        /// Returns reservation ticket by id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>ReservationTicket object.</returns>
         public ReservationTicket GetReservationById(int id)
         {
             var service = _db.ReservationTickets
@@ -44,7 +51,11 @@ namespace BikeRental.Services.Resource_Service
             return service;
         }
 
-        // CREATE
+        /// <summary>
+        /// Create reservation ticket.
+        /// </summary>
+        /// <param name="reservation">ReservationTicket object.</param>
+        /// <returns>ResponseService object.</returns>
         public ResponseService<ReservationTicket> CreateReservationTicket(ReservationTicket reservation)
         {
             try
@@ -72,7 +83,11 @@ namespace BikeRental.Services.Resource_Service
             }
         }
 
-        // DELETE
+        /// <summary>
+        /// Delete reservation ticket by its id.
+        /// </summary>
+        /// <param name="id">ReservationTicket id.</param>
+        /// <returns>ResponseService object.</returns>
         public ResponseService<ReservationTicket> DeleteReservationTicket(int id)
         {
             var reservation = _db.ReservationTickets.Find(id);
@@ -110,6 +125,5 @@ namespace BikeRental.Services.Resource_Service
                 };
             }
         }
-
     }
 }

@@ -12,12 +12,21 @@ namespace BikeRental.Services.Resource_Service
             _db = db;
         }
 
+        /// <summary>
+        /// Returns all frame sizes.
+        /// </summary>
+        /// <returns>List of FrameSize objects.</returns>
         public List<FrameSize> GetAllFramesizes()
         {
             var service = _db.FrameSizes.ToList();
             return service;
         }
 
+        /// <summary>
+        /// Returns frame size by FrameSize object id.
+        /// </summary>
+        /// <param name="id">FrameSize object id.</param>
+        /// <returns>FrameSize object.</returns>
         public FrameSize GetFrameSizeById(int id)
         {
             var service = _db.FrameSizes.FirstOrDefault(x => x.Id == id);
