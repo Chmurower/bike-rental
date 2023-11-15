@@ -9,7 +9,7 @@ namespace BikeRental.Services.Resource_Service
         // READ
         public List<Bicycle> GetAllBikes();
         public Bicycle GetBikeById(int id);
-        public List<Bicycle> GetAllBikesReadyToRent()
+        public List<Bicycle> GetAllBikesReadyToRent();
         // UPDATE
         public ResponseService<bool> UpdateBikeData(Bicycle bicycle);
         // DELETE
