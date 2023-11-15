@@ -29,6 +29,7 @@ namespace BikeRental.Api.Controllers
             return Ok(reservations);
         }
 
+        // POST
         [HttpPost("api/reservationticket/create")]
         public IActionResult CreateNewBicycle([FromBody] ReservationTicket reservation)
         {
@@ -36,6 +37,7 @@ namespace BikeRental.Api.Controllers
             return Ok(service);
         }
 
+        // DELETE
         [HttpDelete("api/reservationticket/close/{id}")]
         public IActionResult DeleteReservationTicket(int id)
         {
