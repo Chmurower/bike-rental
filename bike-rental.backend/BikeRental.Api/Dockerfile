@@ -1,19 +1,21 @@
-FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
+# Use the official .NET SDK image as a base image
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /app
-EXPOSE 80
 
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
-WORKDIR /src
-COPY ["BikeRental.Api/BikeRental.Api.csproj", "BikeRental.Api/"]
-RUN dotnet restore "BikeRental.Api/BikeRental.Api.csproj"
+# Copy the solution file and restore NuGet packages
+COPY *.sln .
+COPY *.csproj ./
+COPY ../BikeRental.Services/*.csproj ./BikeRental.Services/
+COPY ./BikeRental.Models/*.csproj ./BikeRental.Models/
+
+RUN dotnet restore
+
+# Copy the entire solution contents and build the application
 COPY . .
-WORKDIR "/src/BikeRental.Api"
-RUN dotnet build "BikeRental.Api.csproj" -c Release -o /app/build
+RUN dotnet publish -c Release -o out
 
-FROM build AS publish
-RUN dotnet publish "BikeRental.Api.csproj" -c Release -o /app/publish
-
-FROM base AS final
+# Create the final runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:5.0
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=build /app/out .
 ENTRYPOINT ["dotnet", "BikeRental.Api.dll"]
