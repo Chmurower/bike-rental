@@ -4,7 +4,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
-builder.Services.AddHttpClient();
+// Configure HttpClient
+builder.Services.AddHttpClient("MyClient", client =>
+{
+    client.BaseAddress = new Uri("https://backend:7052/");
+});
 
 var app = builder.Build();
 
@@ -17,9 +21,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseStaticFiles();
-
 app.UseRouting();
 
 app.MapBlazorHub();

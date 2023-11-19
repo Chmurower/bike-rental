@@ -16,4 +16,5 @@ RUN dotnet publish "BikeRental.Api.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+COPY cert.pfx /etc/ssl/certs/
 ENTRYPOINT ["dotnet", "BikeRental.Api.dll"]

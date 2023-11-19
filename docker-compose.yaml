@@ -17,6 +17,14 @@ services:
     networks:
       - mynetwork
 
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 9090:8080
+    networks:
+      - mynetwork
+
   backend:
     build: 
       context: ./bike-rental.backend/
@@ -28,6 +36,8 @@ services:
     ports:
       - "5094:5094"
       - "7052:7052"
+    volumes:
+    - ./bike-rental.backend/BikeRental.Api/cert.pfx:/etc/ssl/certs/cert.pfx
 
   frontend:
     build: 
@@ -42,7 +52,7 @@ services:
       - "7127:7127"
       - "8008:80"
     environment:
-      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_ENVIRONMENT=Development
 
 volumes:
   dbdata:
