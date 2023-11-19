@@ -14,7 +14,6 @@ builder.Services.AddDbContext<RentalDbContext>(options => options.UseSqlServer(b
 builder.Services.AddScoped<ResourceService>();
 builder.Services.AddScoped<CategoryService>();
 builder.Services.AddScoped<FramesizeService>();
-builder.Services.AddScoped<ReservationDateService>();
 builder.Services.AddScoped<ReservationTicketService>();
 
 var app = builder.Build();
