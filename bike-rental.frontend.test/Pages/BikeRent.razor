@@ -1,9 +1,12 @@
 ﻿@page "/rentit/{id:int}"
 
 @using bike_rental.frontend.test.Models
+@using Microsoft.Extensions.Options;
+@using bike_rental.frontend.test.Services;
 
 @inject HttpClient http
 @inject NavigationManager Navigation
+@inject IOptions<ApiSettings> _apiOptions;
 
 <h3>BikeRent</h3>
 
@@ -86,12 +89,12 @@
         bicycle.IsRent = true;
 
         // create reservation
-        var responseReservationCreate = await http.PostAsJsonAsync<ReservationTicket>("https://localhost:7052/api/reservationticket/create", reservation);
+            var responseReservationCreate = await http.PostAsJsonAsync<ReservationTicket>(_apiOptions.Value.Url +  "api/reservationticket/create", reservation);
         // if reservation create true
         if (responseReservationCreate.IsSuccessStatusCode)
         {
             // Update bike data
-            var responseBikeUpdate = await http.PatchAsJsonAsync($"https://localhost:7052/api/bike/update", bicycle);
+                var responseBikeUpdate = await http.PatchAsJsonAsync(_apiOptions.Value.Url + "api/bike/update", bicycle);
         }
 
         Navigation.NavigateTo("/bicyclesforrent", true);
@@ -99,8 +102,8 @@
 
     protected override async Task OnInitializedAsync()
     {
-        bicycle = await http.GetFromJsonAsync<Bicycle>("https://localhost:7052/api/bike/" + Id);
-        category = await http.GetFromJsonAsync<Category>("https://localhost:7052/api/category/" + bicycle.CategoryId);
-        framesize = await http.GetFromJsonAsync<FrameSize>("https://localhost:7052/api/framesize/" + bicycle.FrameSizeId);
+        bicycle = await http.GetFromJsonAsync<Bicycle>(_apiOptions.Value.Url + "api/bike/" + Id);
+        category = await http.GetFromJsonAsync<Category>(_apiOptions.Value.Url + "api/category/" + bicycle.CategoryId);
+        framesize = await http.GetFromJsonAsync<FrameSize>(_apiOptions.Value.Url + "api/framesize/" + bicycle.FrameSizeId);
     }
 }

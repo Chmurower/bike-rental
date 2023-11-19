@@ -1,10 +1,12 @@
 ﻿@page "/deletebicycle"
 
 @using bike_rental.frontend.test.Models;
+@using Microsoft.Extensions.Options;
+@using bike_rental.frontend.test.Services;
 
 @inject HttpClient http;
 @inject NavigationManager Navigation
-
+@inject IOptions<ApiSettings> _apiOptions;
 
 <PageTitle>Bike scrap</PageTitle>
 
@@ -46,7 +48,7 @@ else
 
     private async Task DeleteThisBike(int id)
     {
-        var deleteResponse = await http.DeleteAsync("https://localhost:7052/api/bike/remove/" + id);
+        var deleteResponse = await http.DeleteAsync(_apiOptions.Value.Url + "api/bike/remove/" + id);
 
         if (deleteResponse.IsSuccessStatusCode == true)
         {
@@ -56,6 +58,6 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        bicycles = await http.GetFromJsonAsync<List<Bicycle>>("https://localhost:7052/api/service");
+        bicycles = await http.GetFromJsonAsync<List<Bicycle>>(_apiOptions.Value.Url + "api/service");
     }
 }

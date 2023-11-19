@@ -52,7 +52,7 @@ else
         bicycle.IsAvailable = false;
         bicycle.IsInService = true;
 
-        var response = await http.PatchAsJsonAsync($"https://localhost:7052/api/service/done", bicycle);
+        var response = await http.PatchAsJsonAsync(_apiOptions.Value.Url + "/api/service/done", bicycle);
 
         if (response.IsSuccessStatusCode)
         {

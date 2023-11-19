@@ -1,8 +1,11 @@
 ﻿@page "/bicyclesforrent"
 @using bike_rental.frontend.test.Models
+@using Microsoft.Extensions.Options;
+@using bike_rental.frontend.test.Services;
 
 @inject HttpClient http
 @inject NavigationManager Navigation
+@inject IOptions<ApiSettings> _apiOptions;
 
 <PageTitle>Bicycles for rent</PageTitle>
 
@@ -47,7 +50,7 @@ else
         bicycle.IsAvailable = false;
         bicycle.IsInService = true;
 
-        var response = await http.PatchAsJsonAsync($"https://localhost:7052/api/service/done", bicycle);
+        var response = await http.PatchAsJsonAsync(_apiOptions.Value.Url + "api/service/done", bicycle);
 
         if (response.IsSuccessStatusCode)
         {
@@ -64,6 +67,6 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        bicycles = await http.GetFromJsonAsync<List<Bicycle>>("https://localhost:7052/api/bike/rent");
+        bicycles = await http.GetFromJsonAsync<List<Bicycle>>(_apiOptions.Value.Url + "api/bike/rent");
     }
 }
