@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BikeRental.Models.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -49,7 +49,8 @@ namespace BikeRental.Models.Migrations
                     SerialNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StartService = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsAvailable = table.Column<bool>(type: "bit", nullable: false),
-                    IsInService = table.Column<bool>(type: "bit", nullable: false)
+                    IsInService = table.Column<bool>(type: "bit", nullable: false),
+                    IsRent = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -60,25 +61,10 @@ namespace BikeRental.Models.Migrations
                         principalTable: "Categorys",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ReservationDates",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    StartReservation = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndReservation = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    BicycleId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ReservationDates", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ReservationDates_Bicycles_BicycleId",
-                        column: x => x.BicycleId,
-                        principalTable: "Bicycles",
+                        name: "FK_Bicycles_FrameSizes_FrameSizeId",
+                        column: x => x.FrameSizeId,
+                        principalTable: "FrameSizes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -89,9 +75,11 @@ namespace BikeRental.Models.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CustomerName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IdSerial = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BicycleId = table.Column<int>(type: "int", nullable: false),
-                    ReservationDateId = table.Column<int>(type: "int", nullable: false)
+                    ReservationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -110,9 +98,9 @@ namespace BikeRental.Models.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ReservationDates_BicycleId",
-                table: "ReservationDates",
-                column: "BicycleId");
+                name: "IX_Bicycles_FrameSizeId",
+                table: "Bicycles",
+                column: "FrameSizeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ReservationTickets_BicycleId",
@@ -124,12 +112,6 @@ namespace BikeRental.Models.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "FrameSizes");
-
-            migrationBuilder.DropTable(
-                name: "ReservationDates");
-
-            migrationBuilder.DropTable(
                 name: "ReservationTickets");
 
             migrationBuilder.DropTable(
@@ -137,6 +119,9 @@ namespace BikeRental.Models.Migrations
 
             migrationBuilder.DropTable(
                 name: "Categorys");
+
+            migrationBuilder.DropTable(
+                name: "FrameSizes");
         }
     }
 }
