@@ -22,6 +22,15 @@ namespace BikeRental.Services.Resource_Service
             return service;
         }
 
+        // Test for testing docker purpose
+        public Category GetCategoryTest()
+        {
+            return new Category { 
+                Id = 0, 
+                Type = "test" 
+            };
+        }
+
         /// <summary>
         /// Returns Category object by category id.
         /// </summary>

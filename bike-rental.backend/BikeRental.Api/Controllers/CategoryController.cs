@@ -21,6 +21,14 @@ namespace BikeRental.Api.Controllers
         }
 
         // GET
+        [HttpGet("api/category/test")]
+        public IActionResult GetCategoryTest()
+        {
+            var category = _dbCategory.GetCategoryTest();
+            return Ok(category);
+        }
+
+        // GET
         [HttpGet("api/category/{id}")]
         public IActionResult GetCategoryById(int id)
         {

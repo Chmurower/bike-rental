@@ -32,6 +32,12 @@ namespace BikeRental.Models
                 // Use the connection string from appsettings.json
                 string connectionString = _configuration.GetConnectionString("DefaultConnection");
                 optionsBuilder.UseSqlServer(connectionString);
+
+                optionsBuilder.UseSqlServer(connectionString, options =>
+                {
+                    // Enable retry on failure
+                    options.EnableRetryOnFailure();
+                });
             }
         }
     }

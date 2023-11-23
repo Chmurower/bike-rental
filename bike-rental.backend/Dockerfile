@@ -1,12 +1,8 @@
 # Use the official .NET SDK image as the base image
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build-new
 
 # Set the working directory to /app
 WORKDIR /app
-
-# Expose port 80 for the application
-EXPOSE 80
-EXPOSE 443
 
 # Copy the solution file and restore dependencies
 COPY BikeRental.sln .
@@ -28,7 +24,11 @@ RUN dotnet build -c Release -o out
 # Create the runtime image
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build-final
 WORKDIR /app
-COPY --from=build-env /app/out .
+COPY --from=build-new /app/out .
+
+# Expose port 5000 for the application
+EXPOSE 80
+EXPOSE 443
 
 # Specify the entry point for the application
 ENTRYPOINT ["dotnet", "BikeRental.Api.dll"]

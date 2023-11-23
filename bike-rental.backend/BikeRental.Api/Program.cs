@@ -30,11 +30,19 @@ builder.Services.AddScoped<ReservationTicketService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
+if (app.Environment.IsDevelopment())
+{
     app.UseSwagger();
     app.UseSwaggerUI();
-//}
+}
+
+// maping hosted port for docker purpose
+app.MapGet("/", () =>
+{
+    var urls = Environment.GetEnvironmentVariable("ASPNETCORE_URLS") ?? "http://localhost:5000";
+    Console.WriteLine($"Hosted URLs: {urls}");
+    return "Hello, World!";
+});
 
 //app.UseHttpsRedirection();
 
