@@ -14,3 +14,5 @@ bike-rental.backend/BikeRental.Api/obj/
 bike-rental.backend/BikeRental.Api/bin/
 
 bike-rental.frontend.test/bin/
+
+variables.tf
