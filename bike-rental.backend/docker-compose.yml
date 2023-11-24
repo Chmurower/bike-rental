@@ -2,6 +2,7 @@ version: '3.4'
 services:
   ms-sql-server:
     image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: sql_server
     environment:
       ACCEPT_EULA: "Y"
       SA_PASSWORD: "BikeRental!1"
@@ -9,6 +10,7 @@ services:
     ports:
       - "1433:1433"
   backend-api:
+    container_name: backend_api
     environment:
       ASPNETCORE_HTTP_PORT: "https://+:8081"
       ASPNETCORE_URLS: "http://+8080"
