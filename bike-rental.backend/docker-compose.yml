@@ -4,7 +4,7 @@ services:
     image: mcr.microsoft.com/mssql/server:2019-latest
     environment:
       ACCEPT_EULA: "Y"
-      SA_PASSWORD: "ThisIsPass!1"
+      SA_PASSWORD: "BikeRental!1"
       MSSQL_PID: Express
     ports:
       - "1433:1433"
