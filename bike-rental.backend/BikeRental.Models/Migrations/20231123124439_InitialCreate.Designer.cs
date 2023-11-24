@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BikeRental.Models.Migrations
 {
     [DbContext(typeof(RentalDbContext))]
-    [Migration("20231110181019_ModelChangeModelResdervationDateRemoved")]
-    partial class ModelChangeModelResdervationDateRemoved
+    [Migration("20231123124439_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,6 +60,8 @@ namespace BikeRental.Models.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("FrameSizeId");
 
                     b.ToTable("Bicycles");
                 });
@@ -134,7 +136,15 @@ namespace BikeRental.Models.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("BikeRental.Models.Models.FrameSize", "FrameSize")
+                        .WithMany()
+                        .HasForeignKey("FrameSizeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Category");
+
+                    b.Navigation("FrameSize");
                 });
 
             modelBuilder.Entity("BikeRental.Models.Models.ReservationTicket", b =>
