@@ -27,6 +27,7 @@ WORKDIR /app
 COPY --from=build-new /app/out .
 
 # Expose port 5000 for the application
+# EXPOSE 80
 EXPOSE 80
 EXPOSE 443
 

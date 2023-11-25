@@ -51,9 +51,9 @@ else
         reservation.Bicycle.IsInService = false;
         reservation.Bicycle.IsRent = false;
         // Update db
-        var responseBicycle = await http.PatchAsJsonAsync($"https://localhost:8080/api/bike/update", reservation.Bicycle);
+        var responseBicycle = await http.PatchAsJsonAsync($"https://localhost:7080/api/bike/update", reservation.Bicycle);
         // close reservation ticket
-        var responseReservation = await http.DeleteAsync($"https://localhost:8080/api/reservationticket/close/" + reservation.Id);
+        var responseReservation = await http.DeleteAsync($"https://localhost:7080/api/reservationticket/close/" + reservation.Id);
         if (responseBicycle.IsSuccessStatusCode && responseReservation.IsSuccessStatusCode)
         {
             Navigation.NavigateTo("/bicyclereturn", true);
@@ -66,9 +66,9 @@ else
         reservation.Bicycle.IsInService = true;
         reservation.Bicycle.IsRent = false;
         // Update db
-        var responseBicycle = await http.PatchAsJsonAsync($"https://localhost:8080/api/bike/update", reservation.Bicycle);
+        var responseBicycle = await http.PatchAsJsonAsync($"https://localhost:7080/api/bike/update", reservation.Bicycle);
         // close reservation ticket
-        var responseReservation = await http.DeleteAsync($"https://localhost:8080/api/reservationticket/close/" + reservation.Id);
+        var responseReservation = await http.DeleteAsync($"https://localhost:7080/api/reservationticket/close/" + reservation.Id);
 
         if (responseBicycle.IsSuccessStatusCode && responseReservation.IsSuccessStatusCode)
         {
@@ -79,6 +79,6 @@ else
     protected override async Task OnInitializedAsync()
     {
         // ask endpoint for bicycle thet are already rented
-        reservations = await http.GetFromJsonAsync<List<ReservationTicket>>("https://localhost:8080/api/reservationticket");
+        reservations = await http.GetFromJsonAsync<List<ReservationTicket>>("https://localhost:7080/api/reservationticket");
     }
 }

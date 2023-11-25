@@ -12,8 +12,20 @@ services:
   backend-api:
     container_name: backend_api
     environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ASPNETCORE_HTTP_PORT: "https://+:78081"
+      ASPNETCORE_URLS: "http://+7080"
+    build: .
+    ports:
+      - "7080:80"
+  frontend-app:
+    container_name: fronend_api
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
       ASPNETCORE_HTTP_PORT: "https://+:8081"
       ASPNETCORE_URLS: "http://+8080"
-    build: .
+    build:
+      context: ./bike-rental.frontend
+      dockerfile: Dockerfile
     ports:
       - "8080:80"
