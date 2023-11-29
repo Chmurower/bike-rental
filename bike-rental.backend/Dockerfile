@@ -28,7 +28,7 @@ COPY --from=build-new /app/out .
 
 # Expose port 5000 for the application
 EXPOSE 80
-EXPOSE 443
+#EXPOSE 443
 
 # Specify the entry point for the application
 ENTRYPOINT ["dotnet", "BikeRental.Api.dll"]
