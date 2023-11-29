@@ -86,12 +86,12 @@
         bicycle.IsRent = true;
 
         // create reservation
-        var responseReservationCreate = await http.PostAsJsonAsync<ReservationTicket>("http://localhost:8080/api/reservationticket/create", reservation);
+        var responseReservationCreate = await http.PostAsJsonAsync<ReservationTicket>("http://backend-api:80/api/reservationticket/create", reservation);
         // if reservation create true
         if (responseReservationCreate.IsSuccessStatusCode)
         {
             // Update bike data
-            var responseBikeUpdate = await http.PatchAsJsonAsync($"http://localhost:8080/api/bike/update", bicycle);
+            var responseBikeUpdate = await http.PatchAsJsonAsync($"http://backend-api:80/api/bike/update", bicycle);
         }
 
         Navigation.NavigateTo("/bicyclesforrent", true);
@@ -99,8 +99,8 @@
 
     protected override async Task OnInitializedAsync()
     {
-        bicycle = await http.GetFromJsonAsync<Bicycle>("http://localhost:8080/api/bike/" + Id);
-        category = await http.GetFromJsonAsync<Category>("http://localhost:8080/api/category/" + bicycle.CategoryId);
-        framesize = await http.GetFromJsonAsync<FrameSize>("http://localhost:8080/api/framesize/" + bicycle.FrameSizeId);
+        bicycle = await http.GetFromJsonAsync<Bicycle>("http://backend-api:80/api/bike/" + Id);
+        category = await http.GetFromJsonAsync<Category>("http://backend-api:80/api/category/" + bicycle.CategoryId);
+        framesize = await http.GetFromJsonAsync<FrameSize>("http://backend-api:80/api/framesize/" + bicycle.FrameSizeId);
     }
 }

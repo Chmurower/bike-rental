@@ -47,7 +47,7 @@ else
         bicycle.IsAvailable = false;
         bicycle.IsInService = true;
 
-        var response = await http.PatchAsJsonAsync($"http://localhost:8080/api/service/done", bicycle);
+        var response = await http.PatchAsJsonAsync($"http://backend-api:80/api/service/done", bicycle);
 
         if (response.IsSuccessStatusCode)
         {
@@ -64,6 +64,6 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        bicycles = await http.GetFromJsonAsync<List<Bicycle>>("http://localhost:8080/api/bike/rent");
+        bicycles = await http.GetFromJsonAsync<List<Bicycle>>("http://backend-api:80/api/bike/rent");
     }
 }

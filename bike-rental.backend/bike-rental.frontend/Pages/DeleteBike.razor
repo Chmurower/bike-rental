@@ -46,7 +46,7 @@ else
 
     private async Task DeleteThisBike(int id)
     {
-        var deleteResponse = await http.DeleteAsync("http://localhost:8080/api/bike/remove/" + id);
+        var deleteResponse = await http.DeleteAsync("http://backend-api:80/api/bike/remove/" + id);
 
         if (deleteResponse.IsSuccessStatusCode == true)
         {
@@ -56,6 +56,6 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        bicycles = await http.GetFromJsonAsync<List<Bicycle>>("http://localhost:8080/api/service");
+        bicycles = await http.GetFromJsonAsync<List<Bicycle>>("http://backend-api:80/api/service");
     }
 }

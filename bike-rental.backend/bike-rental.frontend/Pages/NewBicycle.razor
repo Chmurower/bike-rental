@@ -62,7 +62,7 @@
                 IsAvailable = false,
                 IsInService = true
         };
-        var response = await http.PostAsJsonAsync<Bicycle>("http://localhost:8080/api/service/create/bicycle", newBike);
+        var response = await http.PostAsJsonAsync<Bicycle>("http://backend-api:80/api/service/create/bicycle", newBike);
         if (response.IsSuccessStatusCode)
         {
             Navigation.NavigateTo("/service", true);
@@ -71,8 +71,8 @@
 
     protected override async Task OnInitializedAsync()
     {
-        CategoryList = await http.GetFromJsonAsync<List<Category>>("http://localhost:8080/api/category") ?? new List<Category>();
+        CategoryList = await http.GetFromJsonAsync<List<Category>>("http://backend-api:80/api/category") ?? new List<Category>();
 
-        FrameSizeList = await http.GetFromJsonAsync<List<FrameSize>>("http://localhost:8080/api/framesize") ?? new List<FrameSize>();
+        FrameSizeList = await http.GetFromJsonAsync<List<FrameSize>>("http://backend-api:80/api/framesize") ?? new List<FrameSize>();
     }
 }

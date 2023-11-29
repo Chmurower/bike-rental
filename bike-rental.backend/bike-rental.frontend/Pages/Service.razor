@@ -50,7 +50,7 @@ else
         bicycle.IsInService = false;
         bicycle.StartService = DateTime.UtcNow.AddDays(30);
 
-        var response = await http.PatchAsJsonAsync($"https://localhost:8080/api/service/done", bicycle);
+        var response = await http.PatchAsJsonAsync($"http://backend-api:80/api/service/done", bicycle);
 
         if (response.IsSuccessStatusCode)
         {
@@ -70,6 +70,6 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        bicycles = await http.GetFromJsonAsync<List<Bicycle>>("https://localhost:8080/api/service");
+        bicycles = await http.GetFromJsonAsync<List<Bicycle>>("http://backend-api:80/api/service");
     }
 }
