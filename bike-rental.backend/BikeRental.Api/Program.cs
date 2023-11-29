@@ -39,9 +39,9 @@ if (app.Environment.IsDevelopment())
 // maping hosted port for docker purpose
 app.MapGet("/", () =>
 {
-    var urls = Environment.GetEnvironmentVariable("ASPNETCORE_URLS") ?? "http://localhost:5000";
+    var urls = Environment.GetEnvironmentVariable("ASPNETCORE_URLS") ?? "http://+8080";
     Console.WriteLine($"Hosted URLs: {urls}");
-    return "Hello, World!";
+    return "Hello, from Backend!";
 });
 
 //app.UseHttpsRedirection();
