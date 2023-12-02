@@ -29,7 +29,7 @@ services:
       ASPNETCORE_HTTP_PORT: "https://+:8081"
       ASPNETCORE_URLS: "http://+8080"
     build:
-      context: ./bike-rental.frontend
+      context: ./bike-rental.Frontend
       dockerfile: Dockerfile
     ports:
       - "5000:80"
