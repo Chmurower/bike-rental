@@ -20,13 +20,13 @@ jobs:
         dotnet-version: '7.0.x'
 
     - name: Build backend
-      run: dotnet build ./bike-rental.backend/BikeRental.Api/BikeRental.Api.csproj
+      run: dotnet build ./bike-rental.app/BikeRental.Api/BikeRental.Api.csproj
 
     - name: Test backend
-      run: dotnet test ./bike-rental.backend/BikeRental.Api/BikeRental.Api.csproj
+      run: dotnet test ./bike-rental.app/BikeRental.Api/BikeRental.Api.csproj
 
     - name: Build frontend
-      run: dotnet build ./bike-rental.frontend.test/bike-rental.frontend.test.csproj
+      run: dotnet build ./bike-rental.app/bike-rental.Frontend/bike-rental.frontend.test.csproj
 
     - name: Test frontend
-      run: dotnet test ./bike-rental.frontend.test/bike-rental.frontend.test.csproj
+      run: dotnet test ./bike-rental.app/bike-rental.Frontend/bike-rental.frontend.test.csproj
